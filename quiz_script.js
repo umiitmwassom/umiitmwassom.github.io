@@ -1,393 +1,334 @@
 
-
-
 function slugifyName(name) {
   return name
   .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   .toLowerCase().replace(/ /g, "_") + ".png";
 }
 
-
-
-let selectedQuizMode = 5; // default
-
-
-
-
-
-const questionSets = {
-  virtues: [
-    // =======================
-    // VIRTUES (Challenge + Growth)
-    // =======================
-
-    {
-      text: "Which one of the following situations challenges you the most?",
-      answers: [
-        { text: "Deliberating upon and making a major decision", tags: ["Wisdom", "Discernment"] },
-        { text: "Living a chaste life with a purity of heart", tags: ["Chastity", "Purity"] },
-        { text: "Being charitable to those with whom I disagree", tags: ["Ecumenism", "Dialogue"] },
-        { text: "Persevering in a non-ideal but essential situation", tags: ["Perseverance", "Courage"] }
-      ]
-    },
-    {
-      text: "In which of these aspects of your faith do you wish to grow the most?",
-      answers: [
-        { text: "To establish and maintain a strong prayer life", tags: ["Spiritual depth", "Devotion"] },
-        { text: "Being knowledgeable and sharing the beauty of the Catholic faith", tags: ["Catechesis", "Missionary zeal"] },
-        { text: "Standing my ground when being challenged in my faith", tags: ["Ecumenism", "Resilience"] },
-        { text: "Having a heart for the poor and marginalized in society", tags: ["Social justice", "Marginalized"] }
-      ]
-    },
-    {
-      text: "From which of these personal challenges would you like to seek growth?",
-      answers: [
-        { text: "Not knowing God’s love for me on a personal level", tags: ["Devotion"] },
-        { text: "Admitting that I am wrong", tags: ["Humility"] },
-        { text: "Accepting failure and letting it go", tags: ["Interior freedom", "Courage"] },
-        { text: "Feeling stressed out by many responsibilities", tags: ["Perseverance"] }
-      ]
-    },
-
-    // (Challenge: Evangelization)
-    {
-      text: "Which of these ways of evangelization challenges you the most?",
-      answers: [
-        { text: "Learning a culture patiently and finding God already present within it", tags: ["Patience", "Inculturation"] },
-        { text: "Living without a stable home base and constantly being sent elsewhere", tags: ["Missionary"] },
-        { text: "Understanding and confronting the systemic roots of social sin", tags: ["Social justice", "Marginalized"] },
-        { text: "Sowing seeds without knowing if or when they will bear fruit", tags: ["Interior freedom", "Perseverance"] }
-      ]
-    },
-    // (Growth: Evangelization)
-    {
-      text: "In which of these ways of evangelization do you most wish to grow?",
-      answers: [
-        { text: "Teaching the Catholic faith clearly and articulately", tags: ["Catechesis", "Intellectual rigor"] },
-        { text: "Walking patiently with those in greatest need of mercy", tags: ["Spiritual accompaniment"] },
-        { text: "Discerning God’s will in the concrete situations of life", tags: ["Wisdom", "Discernment"] },
-        { text: "Advocating for the marginalized and voiceless", tags: ["Social justice"] }
-      ]
-    },
-
-    // Scenarios (Growth)
-    {
-      text: "When discerning a new ministry role, what would be hardest for you?",
-      answers: [
-        { text: "Figuring out God’s will in this situation", tags: ["Wisdom"] },
-        { text: "Accepting that I do not have control over everything", tags: ["Humility"] },
-        { text: "Saying yes to an unknown that feels uncomfortable", tags: ["Courage"] },
-        { text: "Letting go of a role I love for the sake of others", tags: ["Interior freedom", "Sacrifice"] }
-      ]
-    },
-    {
-      text: "Imagine you are visiting the sick or homebound. What would challenge you most?",
-      answers: [
-        { text: "Finding the right words to bring comfort", tags: ["Wisdom"] },
-        { text: "Being fully present despite discomfort or revulsion", tags: ["Courage"] },
-        { text: "Accepting the limits of what I can do", tags: ["Humility", "Interior freedom"] },
-        { text: "Returning regularly even when it is inconvenient", tags: ["Perseverance"] }
-      ]
-    },
-    {
-      text: "If you were serving in a ministry for the poor, what would stretch you most?",
-      answers: [
-        { text: "Giving generously of time when I feel exhausted", tags: ["Magnanimity"] },
-        { text: "Advocating for the ministry and seeking resources to sustain it", tags: ["Leadership"] },
-        { text: "Understanding the roots of poverty and empathizing deeply", tags: ["Intellectual rigor", "Marginalized"] },
-        { text: "Continuing even when results seem minimal", tags: ["Perseverance", "Courage"] }
-      ]
-    },
-    {
-      text: "Imagine yourself working in a Catholic school. Which situation would challenge you most?",
-      answers: [
-        { text: "Remaining faithful to the duty of the moment amid interruptions", tags: ["Holiness in ordinary life"] },
-        { text: "Remaining charitable to a disrespectful student", tags: ["Perseverance"] },
-        { text: "Enduring stressful meetings with patience", tags: ["Resilience"] },
-        { text: "Aligning every decision with the school’s mission", tags: ["Leadership", "Fidelity"] }
-      ]
-    },
-    {
-      text: "If you were asked to lead a discussion on Catholic social teaching, what would be hardest?",
-      answers: [
-        { text: "Explaining complex ideas simply", tags: ["Educator", "Intellectual rigor"] },
-        { text: "Encouraging respectful dialogue among differing views", tags: ["Dialogue"] },
-        { text: "Leading confidently when discussion becomes heated", tags: ["Leadership", "Courage"] },
-        { text: "Admitting when I need to learn more", tags: ["Humility"] }
-      ]
-    }
-  ],
-
-  service: [
-    // =======================
-    // SERVICE
-    // =======================
-
-    {
-      text: "Where do you most desire to serve the Lord and his people?",
-      answers: [
-        { text: "Classrooms as a teacher or catechist", tags: ["Catechesis", "Intellectual rigor"] },
-        { text: "Homeless shelters and prisons", tags: ["Marginalized", "Social justice"] },
-        { text: "Planning and leading evangelization initiatives", tags: ["Leadership", "Visionary"] },
-        { text: "One-on-one spiritual accompaniment", tags: ["Wisdom", "Spiritual accompaniment"] }
-      ]
-    },
-    {
-      text: "Which group of people do you most long to accompany?",
-      answers: [
-        { text: "Family and friends who do not yet know God personally", tags: ["Evangelisation of one’s own", "Apostolic zeal"] },
-        { text: "People from cultures that have not encountered Christ", tags: ["Missionary", "Inculturation"] },
-        { text: "The abandoned and downtrodden", tags: ["Marginalized"] },
-        { text: "Spiritual seekers in a post-Christian world", tags: ["Dialogue", "Wisdom"] }
-      ]
-    },
-    {
-      text: "Which form of peacemaking attracts you most?",
-      answers: [
-        { text: "Cultivating interior peace of heart", tags: ["Devotion"] },
-        { text: "Dialogue to find common ground", tags: ["Ecumenism"] },
-        { text: "Working together for the common good", tags: ["Leadership"] },
-        { text: "Self-sacrifice for the sake of others", tags: ["Sacrifice", "Martyrdom"] }
-      ]
-    },
-
-    // Added from your doc (Service: Action)
-    {
-      text: "Which of these ways of communicating the Catholic faith attracts you the most?",
-      answers: [
-        { text: "Through my action in serving the poor and needy", tags: ["Social justice"] },
-        { text: "Teaching", tags: ["Educator", "Catechesis"] },
-        { text: "Bearing witness to the faith in the face of hostility", tags: ["Courage", "Missionary"] },
-        { text: "Embracing and transforming the culture in which we live", tags: ["Inculturation"] }
-      ]
-    },
-
-    // Added from your doc (Service: Missionary)
-    {
-      text: "When it comes to evangelization, into which type of mission territory do you find the most attracted to enter?",
-      answers: [
-        { text: "Established cultures in the East", tags: ["Inculturation", "Intellectual rigor"] },
-        { text: "Indigenous cultures around the world", tags: ["Inculturation", "Indigenous"] },
-        { text: "The post-Christian culture in Europe", tags: ["Dialogue"] },
-        { text: "Evangelizing the baptized in my own backyard", tags: ["Locale", "Apostolic zeal"] }
-      ]
-    },
-
-    // Added from your doc (Service: Ways of serving)
-    {
-      text: "By which of these ways of evangelization do you feel the most challenged?",
-      answers: [
-        { text: "Having a boundless zeal to make the Good News of Jesus Christ known", tags: ["Apostolic zeal"] },
-        { text: "Growing in compassion and strength to serve the poor and marginalized", tags: ["Marginalized", "Courage"] },
-        { text: "Engaging in the slow work of sowing and cultivating in educating the youth", tags: ["Perseverance", "Educator"] },
-        { text: "Tuning my spiritual compass in growing in sensitivity to discern God’s will", tags: ["Spiritual accompaniment", "Wisdom"] }
-      ]
-    }
-  ],
-
-  spiritualDepth: [
-    // =======================
-    // SPIRITUAL DEPTH
-    // =======================
-
-    {
-      text: "Which way of seeking spiritual depth do you desire most?",
-      answers: [
-        { text: "Understanding the faith deeply in order to communicate it well", tags: ["Intellectual rigor", "Educator"] },
-        { text: "Learning the movements of the heart to help others follow God", tags: ["Wisdom", "Spiritual accompaniment"] },
-        { text: "Understanding society to evangelize creatively", tags: ["Missionary", "Inculturation"] },
-        { text: "Embracing hardship for the sake of Christian witness", tags: ["Courage", "Sacrifice"] }
-      ]
-    },
-    {
-      text: "Which spirituality are you most drawn toward?",
-      answers: [
-        { text: "Finding and serving Christ in the poor", tags: ["Social justice", "Marginalized"] },
-        { text: "Having my heart formed after the Heart of Jesus", tags: ["Devotion"] },
-        { text: "Finding God in the ordinary and mundane", tags: ["Holiness in ordinary life"] },
-        { text: "Being fully available to be sent where needs are greatest", tags: ["Missionary", "Interior freedom"] }
-      ]
-    }
+const questions = [
+  {
+    text: "What best describes your approach to challenges?",
+    answers: [
+      { text: "I reflect deeply before acting", tags: ["Spiritual depth", "Mystical union with God"] },
+      { text: "I adapt quickly and move forward", tags: ["Adaptability", "Resilience"] },
+      { text: "I seek guidance and collaborate", tags: ["Educator", "Scholarship"] },
+      { text: "I take charge and lead others", tags: ["Leadership", "Courageous leadership"] }
+    ]
+  },
+{
+  text: "Which environment excites you most?",
+  answers: [
+    { text: "A university campus full of ideas", tags: ["University Student", "Educator"] },
+    { text: "Remote villages with new cultures", tags: ["Missionary", "Cross-cultural Engagement"] },
+    { text: "A quiet retreat for reflection", tags: ["Contemplation", "Interior Freedom"] },
+    { text: "A dynamic team solving problems", tags: ["Leadership", "Visionary leader"] }
   ]
-};
-
-function pickNShuffled(arr, n) {
-  const copy = shuffleArray([...arr]);
-  return copy.slice(0, Math.min(n, copy.length));
+},
+{
+  text: "How do you prefer to grow spiritually?",
+  answers: [
+    { text: "Through service and action", tags: ["Missionary", "Resilience"] },
+    { text: "Through study and learning", tags: ["Scholarship", "Educator"] },
+    { text: "Through prayer and discernment", tags: ["Contemplation", "Interior Freedom"] },
+    { text: "Through leadership and example", tags: ["Leadership", "Joyful holiness"] }
+  ]
+},
+{
+  text: "What role do you often take in a group?",
+  answers: [
+    { text: "The thoughtful advisor", tags: ["Contemplation", "Interior Freedom"] },
+    { text: "The energetic explorer", tags: ["Missionary", "Adaptability"] },
+    { text: "The curious learner", tags: ["University Student", "Scholarship"] },
+    { text: "The natural leader", tags: ["Leadership", "Courageous leadership"] }
+  ]
+},
+{
+  text: "What inspires you most?",
+  answers: [
+    { text: "Stories of missionaries in distant lands", tags: ["Missionary", "Cross-cultural Engagement"] },
+    { text: "The journey of self-discovery", tags: ["Interior Freedom", "Spiritual depth"] },
+    { text: "Academic excellence and wisdom", tags: ["Scholarship", "Educator"] },
+    { text: "Overcoming adversity", tags: ["Resilience", "Adaptability"] }
+  ]
+},
+{
+  text: "What kind of impact do you want to make?",
+  answers: [
+    { text: "Inspiring young people", tags: ["Apostle of youth", "Joyful holiness"] },
+    { text: "Fighting for justice", tags: ["Social justice advocate", "Defender of the poor"] },
+    { text: "Strengthening families", tags: ["Family apostolate", "Love for Church and Society"] },
+    { text: "Writing and teaching", tags: ["Writer", "Educator"] }
+  ]
+},
+{
+  text: "What drives your passion?",
+  answers: [
+    { text: "Helping the marginalized", tags: ["Defender of the poor", "Social justice advocate"] },
+    { text: "Creating new ideas", tags: ["Apostolic creativity", "Visionary leader"] },
+    { text: "Deepening spiritual life", tags: ["Mystical union with God", "Spiritual depth"] },
+    { text: "Building community", tags: ["Family apostolate", "Love for Church and Society"] }
+  ]
+},
+{
+  text: "Which phrase resonates most?",
+  answers: [
+    { text: "Lead with courage", tags: ["Courageous leadership", "Leadership"] },
+    { text: "Teach with love", tags: ["Educator", "University Student"] },
+    { text: "Serve with joy", tags: ["Joyful holiness", "Apostle of youth"] },
+    { text: "Pray with depth", tags: ["Spiritual depth", "Mystical union with God"] }
+  ]
+},
+{
+  text: "What do you value most?",
+  answers: [
+    { text: "Justice and equity", tags: ["Social justice advocate", "Defender of the poor"] },
+    { text: "Wisdom and learning", tags: ["Scholarship", "Writer"] },
+    { text: "Faith and contemplation", tags: ["Contemplation", "Interior Freedom"] },
+    { text: "Creativity and vision", tags: ["Apostolic creativity", "Visionary leader"] }
+  ]
+},
+{
+  text: "How do you want to be remembered?",
+  answers: [
+    { text: "As a joyful servant", tags: ["Joyful holiness", "Apostle of youth"] },
+    { text: "As a courageous leader", tags: ["Courageous leadership", "Leadership"] },
+    { text: "As a wise teacher", tags: ["Educator", "Scholarship"] },
+    { text: "As a spiritual guide", tags: ["Spiritual depth", "Mystical union with God"] }
+  ]
 }
-
-function buildQuizQuestionsByMode(mode) {
-  // mode: 5 or 10
-  const plan = (mode === 10)
-    ? { virtues: 4, service: 4, spiritualDepth: 2 }
-    : { virtues: 2, service: 2, spiritualDepth: 1 }; // default = 5
-
-  const v = pickNShuffled(questionSets.virtues, plan.virtues).map(q => ({ ...q, category: "virtues" }));
-  const s = pickNShuffled(questionSets.service, plan.service).map(q => ({ ...q, category: "service" }));
-  const d = pickNShuffled(questionSets.spiritualDepth, plan.spiritualDepth).map(q => ({ ...q, category: "spiritualDepth" }));
-
-  return [...v, ...s, ...d];
+,
+{
+  text: "Which kind of ministry draws you most?",
+  answers: [
+    { text: "Teaching the faith clearly and patiently", tags: ["Catechesis", "Educator"]},
+    { text: "Bridging cultures to share the Gospel", tags: ["Inculturation", "Evangelisation"]},
+    { text: "Serving the poor on the margins", tags: ["Devotion to the poor and marginalised", "Social justice"]},
+    { text: "Mentoring others one‑on‑one", tags: ["Spiritual accompaniment", "Wisdom"]}
+  ]
+},
+{
+  text: "What kind of peacemaking best fits you?",
+  answers: [
+    { text: "Mediating conflicts and building bridges", tags: ["Peacebuilder", "Ecumenism"] },
+    { text: "Serving together to heal divisions", tags: ["Lay collaboration", "Peacebuilder"] },
+    { text: "Standing firm with humility", tags: ["Fidelity", "Humility"] },
+    { text: "Clarifying truth to reduce confusion", tags: ["Catechesis", "Intellectual rigor"] }
+  ]
+},
+{
+  text: "Which spiritual role feels most natural to you?",
+  answers: [
+    { text: "One-on-one mentoring and guidance", tags: ["Spiritual accompaniment", "Patience"] },
+    { text: "Rallying others toward mission", tags: ["Leadership", "Apostolic zeal"] },
+    { text: "Teaching doctrine clearly", tags: ["Catechesis", "Intellectual rigor"] },
+    { text: "Praying and discerning with others", tags: ["Wisdom", "Obedience"] }
+  ]
+},
+{
+  text: "Where does your personal devotion lead you?",
+  answers: [
+    { text: "To the Heart of Jesus in reparation", tags: ["Devotion to the Sacred Heart", "Fidelity"] },
+    { text: "Toward hidden, steady holiness", tags: ["Holiness in ordinary life", "Patience"] },
+    { text: "To an interior freedom from attachments", tags: ["Interior freedom/ detachment", "Obedience"] },
+    { text: "Into bold apostolic service", tags: ["Apostolic zeal", "Courage"] }
+  ]
+},
+{
+  text: "How do you handle failure?",
+  answers: [
+    { text: "Reflect, learn, and try again", tags: ["Failure (how to deal with)", "Wisdom"] },
+    { text: "Seek forgiveness and make amends", tags: ["Forgiveness", "Humility"] },
+    { text: "Ask a mentor to walk with me", tags: ["Spiritual accompaniment", "Patience"] },
+    { text: "Re-organize the team and move forward", tags: ["Leadership", "Apostolic zeal"] }
+  ]
+},
+{
+  text: "What best describes your missionary approach?",
+  answers: [
+    { text: "Share faith within my own culture", tags: ["Evangelisation of one's own", "Fidelity"] },
+    { text: "Bridge cultures with respect", tags: ["Inculturation", "Missionary zeal"] },
+    { text: "Work alongside lay partners", tags: ["Lay collaboration", "Leadership"] },
+    { text: "Serve the most vulnerable first", tags: ["Devotion to the poor and marginalised", "Humility"] }
+  ]
+},
+{
+  text: "What kind of work for Christian unity resonates most?",
+  answers: [
+    { text: "Dialogue across traditions", tags: ["Ecumenism", "Ecumenism"] },
+    { text: "Teaching shared essentials of faith", tags: ["Catechesis", "Intellectual rigor"] },
+    { text: "Serving together despite differences", tags: ["Lay collaboration", "Peacebuilder"] },
+    { text: "Quiet prayer for reconciliation", tags: ["Wisdom", "Patience"] }
+  ]
+},
+{
+  text: "If you were assigned to youth work, you would…",
+  answers: [
+    { text: "Form small discipleship groups", tags: ["Youth ministry", "Spiritual accompaniment"] },
+    { text: "Teach and prepare them for sacraments", tags: ["Catechesis", "Intellectual rigor"] },
+    { text: "Run service projects with them", tags: ["Lay collaboration", "Devotion to the poor and marginalised"] },
+    { text: "Call them to generous mission", tags: ["Youth", "Apostolic zeal"] }
+  ]
+},
+{
+  text: "Which daily practice sounds most like you?",
+  answers: [
+    { text: "Steady, unseen faithfulness", tags: ["Holiness in ordinary life", "Patience"] },
+    { text: "Freedom from comforts to serve", tags: ["Interior freedom/ detachment", "Obedience"] },
+    { text: "Acts of reparation to Jesus’ Heart", tags: ["Devotion to the Sacred Heart", "Fidelity"] },
+    { text: "Courageous action for the Gospel", tags: ["Apostolic zeal", "Courage"] }
+  ]
+},
+{
+  text: "How do you prefer to teach the faith?",
+  answers: [
+    { text: "Structured lessons with clear logic", tags: ["Intellectual rigor", "Catechesis"] },
+    { text: "Personal accompaniment and witness", tags: ["Spiritual accompaniment", "Wisdom"] },
+    { text: "Contextualizing across cultures", tags: ["Inculturation", "Evangelisation"] },
+    { text: "Hands-on service that catechizes", tags: ["Lay collaboration", "Devotion to the poor and marginalised"] }
+  ]
+},
+{
+  text: "What leadership style do you aspire to?",
+  answers: [
+    { text: "Seeing the big picture and calling it out", tags: ["Visionary", "Leadership"] },
+    { text: "Building peace in tense moments", tags: ["Peacebuilder", "Ecumenism"] },
+    { text: "Empowering others to co-lead", tags: ["Lay collaboration", "Leadership"] },
+    { text: "Leading with humility and obedience", tags: ["Humility", "Obedience"] }
+  ]
 }
-
-
-function shuffleArray(arr) {
-  // Fisher–Yates shuffle (unbiased)
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-
-
-// Default (if user hasn't chosen yet)
-let shuffledQuestions = buildQuizQuestionsByMode(5);
-
-
-
+,
+{
+  text: "When facing hardship, you…",
+  answers: [
+    { text: "Persevere even unto death if needed", tags: [ "Perseverance","Martyrdom"]},
+    { text: "Choose forgiveness over revenge", tags: [ "Forgiveness", "Humility"]},
+    { text: "Detach from comforts and stay free", tags: [ "Interior freedom/ detachment", "Obedience"]},
+    { text: "Bounce back and keep serving", tags: [ "Resilience", "Apostolic zeal"]}
+  ]
+},
+{
+  text: "Which setting feels like home for your gifts?",
+  answers: [
+    { text: "Lecture hall or catechism class", tags: [ "Intellectual rigor", "Catechesis"]},
+    { text: "Slums, hospitals, and shelters", tags: [ "Devotion to the poor and marginalised", "Social justice advocate"]},
+    { text: "Council rooms and leadership tables", tags: [ "Leadership", "Visionary"]},
+    { text: "Youth groups and schools", tags: [ "Youth ministry", "Apostle of youth"]}
+  ]
+},
+{
+  text: "What personal virtue do you want to grow most?",
+  answers: [
+    { text: "Purity and chastity", tags: [ "Purity", "Chastity"]},
+    { text: "Patience in daily, hidden service", tags: [ "Patience", "Holiness in ordinary life" ]},
+    { text: "Greater humility before God and others", tags: [ "Humility", "Obedience"]},
+    { text: "Magnanimity—a big heart for big things", tags: [ "Magnanimity", "Courage"]}
+  ]
+}];
 const saintProfiles = {
   "Ignatius of Loyola": [
     "Leadership",
     "Wisdom",
-    "Zeal",
-    "Interior Freedom",
-    "Magnanimity"
+    "Interior freedom/ detachment"
   ],
   "Francis Xavier": [
-    "Leadership",
-    "Inculturation",
-    "Perseverance",
-    "Interior Freedom",
-    "Zeal"
+    "Evangelisation",
+    "Missionary zeal",
+    "Inculturation"
   ],
   "Peter Faber": [
-    "Accompaniment",
     "Wisdom",
-    "Ecumenism",
-    "Spiritual Life"
+    "Spiritual accompaniment",
+    "Ecumenism"
   ],
   "Paul Miki": [
-    "Sacrifice",
-    "Asia",
+    "Martyrdom",
     "Courage",
-    "Perserverance",
-    "Locale"
+    "Fidelity"
   ],
   "Claude La Colombiere": [
-    "Devotion",
-    "Accompaniment",
+    "Fidelity",
     "Wisdom",
-    "Spiritual Life"
+    "Perseverance"
   ],
   "Peter Canisius": [
     "Catechesis",
-    "Intellectual Rigor",
-    "Educator",
-    "Ecumenism",
-    "Europe"
+    "Intellectual rigor",
+    "Evangelisation"
   ],
   "Jose Maria Rubio": [
-    "Europe",
-    "Locale",
-    "Zeal",
+    "Devotion to the poor and marginalised",
     "Leadership",
-    "Marginalized"
+    "Apostolic zeal"
   ],
   "Jose de Anchieta": [
-    "Zeal",
+    "Missionary zeal",
     "Inculturation",
-    "Catechesis",
-    "Educator",
-    "Leadership",
-    "Indigenous"
+    "Catechesis"
   ],
   "John Francis Regis": [
-    "Locale",
-    "Europe",
-    "Zeal",
-    "Marginalized",
-    "Perserverence"
+    "Missionary zeal",
+    "Devotion to the poor and marginalised",
+    "Perseverance"
   ],
   "Aloysius Gonzaga": [
-    "Purity",
-    "Courage",
-    "Magnanimity",
-    "Interior Freedom"
+    "Chastity",
+    "Youth",
+    "Courage"
   ],
   "Alberto Hurtado": [
-    "Leadership",
-    "Marginalized",
-    "Intellectual Rigor",
-    "Zeal",
-    "Locale"
+    "Apostolic zeal",
+    "Devotion to the poor and marginalised",
+    "Leadership"
   ],
   "Peter Claver": [
+    "Devotion to the poor and marginalised",
     "Humility",
-    "Marginalized",
-    "Zeal",
-    "Catechesis",
-    "Perserverence"
+    "Missionary zeal"
   ],
   "Robert Bellarmine": [
-    "Leadership",
-    "Intellectual Rigor",
+    "Intellectual rigor",
     "Catechesis",
-    "Accompaniment",
-    "Dialogue"
+    "Spiritual accompaniment"
   ],
   "Francis Borgia": [
     "Humility",
     "Leadership",
-    "Interior Freedom",
-    "Zeal"
+    "Interior freedom/ detachment"
   ],
   "Isaac Jogues": [
-    "Sacrifice",
+    "Martyrdom",
     "Courage",
-    "Indigenous",
-    "Resilience",
-    "Interior Freedom"
+    "Perseverance"
   ],
   "Jean de Brebeuf": [
-    "Sacrifice",
+    "Martyrdom",
     "Inculturation",
-    "Catechesis",
-    "Indigenous",
-    "Leadership",
-    "Courage"
+    "Leadership"
   ],
   "Noel Chabanel": [
-    "Sacrifice",
-    "Indigenous",
-    "Perseverance",
+    "Martyrdom",
     "Humility",
-    "Interior Freedom"
+    "Perseverance"
   ],
   "Alphonsus Rodriguez": [
     "Humility",
-    "Accompaniment",
-    "Daily Life"
+    "Patience",
+    "Holiness in ordinary life"
   ],
   "Stanislaus Kostka": [
-    "Resilience",
-    "Courage",
-    "Purity",
-    "Devotion"
+    "Youth",
+    "Chastity",
+    "Perseverance"
   ],
   "Joseph Pignatelli": [
     "Leadership",
-    "Perserverance",
-    "Humility",
-    "Courage",
-    "Marginalized"
+    "Ecumenism",
+    "Fidelity"
   ],
   "Edmund Campion": [
-    "Intellectual Rigor",
-    "Catechesis",
-    "Courage",
-    "Sacrifice",
-    "Perseverance"
+    "Martyrdom",
+    "Intellectual rigor",
+    "Courage"
   ]
 };
 const saintTexts = {
@@ -513,32 +454,29 @@ function getSaintUrl(name) {
   catch(e){ return null; }
 }
 
-function imageFilenameFromName(name) {
+function imageFilenameFromName(name, basePath = "") {
   const file = slugifyName(name);
   return basePath ? `${basePath.replace(/\/?$/, "/")}${file}` : file;
 }
 
 function updateProgressBar() {
   const fill = document.getElementById("progress-fill");
-  if (!fill || !shuffledQuestions.length) return;
-  const percent = Math.round((currentQuestionIndex / shuffledQuestions.length) * 100);
+  if (!fill || !questions.length) return;
+  const percent = Math.round((currentQuestionIndex / questions.length) * 100);
   fill.style.width = percent + "%";
 }
-
 
 function showQuestion() {
   const container = document.getElementById("question-container");
   if (!container) return;
   container.innerHTML = "";
 
-if (currentQuestionIndex >= shuffledQuestions.length) {
-  showResult();
-  return;
-}
+  if (currentQuestionIndex >= questions.length) {
+    showResult();
+    return;
+  }
 
-
-  const q = shuffledQuestions[currentQuestionIndex];
-
+  const q = questions[currentQuestionIndex];
 
   const h2 = document.createElement("h2");
   h2.textContent = q.text;
@@ -597,13 +535,12 @@ if (currentQuestionIndex >= shuffledQuestions.length) {
     });
 
     currentQuestionIndex++;
-updateProgressBar();
-if (currentQuestionIndex < shuffledQuestions.length) {
-  showQuestion();
-} else {
-  showResult();
-}
-
+    updateProgressBar();
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
   });
 }
 
@@ -739,48 +676,39 @@ function showResult() {
     const info = (saintTexts && saintTexts[topSaint]) ? saintTexts[topSaint] : null;
     if (info) {
       const quote = info.quote ? `“${info.quote}”` : "";
-  const prayer = info.prayer
-  ? `
-    <div class="saint-prayer">
-      <h4 class="prayer-title">Let us pray:</h4>
-      <p>${info.prayer}</p>
-    </div>
-  `
-  : "";
-
-
+      const prayer = info.prayer ? `<p><strong>Prayer:</strong> ${info.prayer}</p>` : "";
       html = [quote ? `<blockquote>${quote}</blockquote>` : "", prayer].filter(Boolean).join("");
     }
     if (!html && topSaint) html = `Interested in learning more about ${topSaint}?`;
     msgEl.innerHTML = html || "";
   }
 
- if (tagsEl) {
-  tagsEl.innerHTML = "";
-  const tags = saintProfiles[topSaint] || [];
-
-  tags.forEach(tag => {
-    const pill = document.createElement("span");
-    pill.classList.add("tag-pill");
-    pill.textContent = tag;
-    pill.addEventListener("click", () => showRelatedByTag(tag, topSaint));
-    tagsEl.appendChild(pill);
-  });
-
-  // ⭐ NEW: auto-show related saints for first tag
-  if (tags.length > 0) {
-    showRelatedByTag(tags[0], topSaint);
+  if (tagsEl) {
+    tagsEl.innerHTML = "";
+    (saintProfiles[topSaint] || []).forEach(tag => {
+      const pill = document.createElement("span");
+      pill.classList.add("tag-pill");
+      pill.textContent = tag;
+      pill.addEventListener("click", () => showRelatedByTag(tag, topSaint));
+      tagsEl.appendChild(pill);
+    });
   }
-}
 
   const progress = document.getElementById("progress-fill");
   if (progress) progress.style.width = "100%";
 
-
-
-
+  const retake = document.getElementById("retake-button");
+  if (retake) {
+    retake.onclick = () => {
+      currentQuestionIndex = 0;
+      tagScores = {};
+      if (resultContainer) resultContainer.classList.add("hidden");
+      if (quizContainer) quizContainer.classList.remove("hidden");
+      updateProgressBar();
+      showQuestion();
+    };
   }
-
+}
 // Related Saints (by tags)
 function showRelatedByTag(tag, excludeSaint) {
   const rel = document.getElementById("related-saints");
@@ -828,64 +756,17 @@ function showRelatedByTag(tag, excludeSaint) {
 
 // initialization 
 updateProgressBar();
-//showQuestion();
-
-// Start screen wiring
-(function attachStart() {
-  const startScreen = document.getElementById("start-screen");
-  const start5 = document.getElementById("start-5");
-  const start10 = document.getElementById("start-10");
-  const quizContainer = document.querySelector(".quiz-container");
-
-  if (!startScreen || !start5 || !start10 || !quizContainer) return;
-
-  function startQuiz(mode) {
-  selectedQuizMode = mode;
-
-  startScreen.classList.add("hidden");
-  quizContainer.classList.remove("hidden");
-
-  currentQuestionIndex = 0;
-  tagScores = {};
-  shuffledQuestions = buildQuizQuestionsByMode(mode);
-
-  updateProgressBar();
-  showQuestion();
-}
-
-  start5.addEventListener("click", () => startQuiz(5));
-  start10.addEventListener("click", () => startQuiz(10));
-})();
-
-
+showQuestion();
 
 (function attachRetake() {
   const btn = document.getElementById("retake-button");
   if (!btn) return;
-
   btn.onclick = () => {
-    const startScreen = document.getElementById("start-screen");
-    const quizContainer = document.querySelector(".quiz-container");
-    const resultContainer = document.getElementById("result-container");
-
-    // Reset state
     currentQuestionIndex = 0;
     tagScores = {};
-    shuffledQuestions = buildQuizQuestionsByMode(selectedQuizMode);
-
-
+    document.getElementById("result-container").classList.add("hidden");
+    document.querySelector(".quiz-container").classList.remove("hidden");
     updateProgressBar();
-
-    // Show start screen again
-    if (resultContainer) resultContainer.classList.add("hidden");
-    if (quizContainer) quizContainer.classList.add("hidden");
-    if (startScreen) startScreen.classList.remove("hidden");
-
-    // If you'd rather retake immediately (skip start screen), replace the 3 lines above with:
-    // if (resultContainer) resultContainer.classList.add("hidden");
-    // if (quizContainer) quizContainer.classList.remove("hidden");
-    // showQuestion();
+    showQuestion();
   };
 })();
-
-

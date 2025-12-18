@@ -3,25 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>High Society Friends</title>
+  <title>Jesuit Saint Personality Quiz</title>
   <link rel="stylesheet" href="quiz_style.css"/>
 </head>
 <body>
-   <!-- START SCREEN -->
-  <div id="start-screen" class="start-screen">
-    <img src="images/logo.png" alt="Jesuit Logo" class="start-logo" />
-
-    <p class="start-description">
-      This short quiz helps you discover which Jesuit saint you most closely
-      resemble, based on virtues, spiritual tendencies, and ways of serving
-      others.
-    </p>
-
-    <button id="start-5" class="answer-button">5 Questions</button>
-<button id="start-10" class="answer-button">10 Questions</button>
-
-  </div>
-  <div class="quiz-container hidden">
+  <div class="quiz-container">
     <h1 class="quiz-title">Which Jesuit Saint Are You?</h1>
     <div id="question-container"></div>
     <div id="progress-bar">
@@ -29,22 +15,14 @@
     </div>
   </div>
   <div id="result-container" class="hidden">
-  <h2>You have been matched with this Jesuit saint:</h2>
-
-  <div class="result-card">
+    <h2>Your Jesuit Saint Buddy:</h2>
     <h3 id="saint-name"></h3>
     <img id="saint-image" src="" alt="Saint Image"/>
-
     <div id="saint-tags"></div>
-
-    <p id="saint-message"></p>
-
     <div id="related-saints"></div>
-
+    <p id="saint-message"></p>
     <button id="retake-button">Retake Quiz</button>
   </div>
-</div>
-
   <script src="quiz_script.js"></script>
 </body>
 </html>

@@ -4,12 +4,6 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-
-    /* PARCHMENT BACKGROUND */
-  background-image: url("images/parchment-bg.jpg");
-
-  background-attachment: fixed;
-  background-color: #f4efe4; /* fallback */
 }
 
 /* Background shimmer container */
@@ -44,6 +38,7 @@ body::before {
     background-position: 0px 0px, 200px 100px, -150px -120px;
   }
 }
+
 
 .quiz-container {
   max-width: 700px;
@@ -94,61 +89,47 @@ body::before {
   transition: width 0.5s ease;
 }
 
-.hidden {
-  display: none !important;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* =========================
-   RESULT SCREEN
-========================= */
-
 #result-container {
   text-align: center;
   padding: 40px;
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Main white card */
-.result-card {
-  max-width: 900px;
-  margin: 0 auto 60px;
-  background: #fff;
-  border-radius: 22px;
-  padding: 40px 50px 50px;
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.12),
-    inset 0 0 0 1px rgba(0,0,0,0.05);
-}
-
 #saint-name {
-  font-family: "Georgia", serif;
-  font-size: 2.2rem;
-  color: #7a1f1f;
-  margin-bottom: 16px;
+  color: #800000;
+  font-size: 1.5em;
+  margin: 6px 0 10px;
 }
 
 #saint-image {
-  width: 260px;
-  max-width: 100%;
-  border-radius: 20px;
-  float: left;
-  margin: 0 30px 20px 0;
-  background: #7a1f1f;
+  max-width: 300px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
 }
 
-#saint-message a {
-  color: #7a1f1f;
-  text-decoration: underline;
+#retake-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #800000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-/* =========================
-   TAG PILLS
-========================= */
+#retake-button:hover {
+  background-color: #a00000;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 #saint-tags {
   margin: 16px auto 8px;
@@ -157,150 +138,118 @@ body::before {
   flex-wrap: wrap;
   gap: 8px;
 }
-
 .tag-pill {
   display: inline-block;
-  background: #b8ad7f;
-  color: #ffffff;
-  padding: 6px 14px;
-  border-radius: 14px;
-  font-size: 0.9rem;
-  margin: 6px 6px 0 0;
+  padding: 6px 10px;
+  border: 1px solid #800000;
+  border-radius: 999px;
+  color: #800000;
+  background: #fff;
   cursor: pointer;
-  transition: background 0.2s ease;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
 }
-
 .tag-pill:hover {
-  background: #9e956a;
+  background: #800000;
+  color: #fff;
 }
-
-/* =========================
-   PRAYER BLOCK
-========================= */
-
-.saint-prayer {
-  clear: both;
-  margin: 40px 0;
-  padding: 30px 36px;
-  background: #f3f1e8;
-  border-radius: 18px;
-  font-family: "Georgia", serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #2f2f2f;
-  position: relative;
-  text-align: left;
-}
-
-.prayer-title {
-  font-size: 1.4rem;
-  margin-bottom: 14px;
-  font-family: "Georgia", serif;
-}
-
-/* =========================
-   RELATED SAINTS (Figma-like)
-========================= */
 
 #related-saints {
-  margin-top: 50px;
-  padding: 50px 40px 40px; /* extra top padding for intersecting pill */
-  border-radius: 22px;
-  border: 2px solid #b8ad7f;
-  position: relative;
-  text-align: center;
-  background: transparent;
+  margin-top: 20px;
 }
-
-/* Intersecting title pill */
 .related-title {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  background: #b8ad7f;
-  color: #ffffff;
-  padding: 12px 32px;
-  border-radius: 999px;
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1;
-
-  border: 6px solid #ffffff; /* must match .result-card background */
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-  white-space: nowrap;
+  color: #800000;
+  margin-bottom: 8px;
 }
-
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* bigger cards */
-  gap: 28px;
-  margin-top: 10px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
 }
-
 .related-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 8px;
   text-align: center;
 }
+.related-card img {
+  width: 100%;
+  max-width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 6px;
+}
+.related-card .name {
+  font-size: 0.9rem;
+}
+.related-hint {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
 
+#saint-tags {
+  margin: 16px auto 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag-pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #800000;
+  border-radius: 999px;
+  color: #800000;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+.tag-pill:hover { background: #800000; color: #fff; }
+#related-saints { margin-top: 20px; }
+.related-title { color: #800000; margin: 14px 0 8px; text-align:center; }
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+  justify-content: center; 
+  justify-items: center;
+}
+.related-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  margin-left: auto; 
+  margin-right: auto;
+}
 .related-card a {
   color: inherit;
   text-decoration: none;
 }
-
 .related-card a:hover {
   text-decoration: underline;
   color: #800000;
 }
-
-/* Bigger images, no cropping */
 .related-card img {
-  width: 180px;
-  height: auto;
-  border-radius: 18px;
+  width: 100%;
+  max-width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
   display: block;
-  margin: 0 auto 12px;
-  background: #ddd;
+  margin: 0 auto 6px;
 }
-
-.related-card .name {
-  font-family: "Georgia", serif;
-  font-size: 1.05rem;
-  margin-top: 4px;
-  color: #2b2b2b;
-}
-
-.related-hint {
-  color: #666;
-  font-size: 0.95rem;
-  margin-top: 8px;
-  text-align: center;
-}
-
-/* =========================
-   RETAKE BUTTON (CTA)
-========================= */
-
-#retake-button {
-  display: block;
-  margin: 50px auto 0;
-  background: #9b0d24;
-  color: #fff;
-  border: none;
-  padding: 16px 36px;
-  font-size: 1.2rem;
-  border-radius: 14px;
-  cursor: pointer;
-}
-
-#retake-button:hover {
-  background: #7f0b1d;
-}
-
-/* =========================
-   RANKING UI
-========================= */
+#related-saints { text-align: center; }
+.related-card .name { font-size: 0.9rem; }
+.related-hint { color: #666; font-size: 0.9rem; margin-top: 8px; text-align:center; }
 
 .ranking-item {
   margin-bottom: 12px;
@@ -326,18 +275,27 @@ body::before {
   align-items: center;
   padding: 12px 14px;
   margin-bottom: 10px;
+
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
+
+  /* Prevent any text from highlighting while dragging */
   user-select: none;
+
+  /* Clear grab cursor */
   cursor: grab;
+
+  /* Smooth polish */
   transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
 }
 
+/* Hover effect to make them feel like real buttons */
 .rank-item:hover {
   background: #f5f5f5;
 }
 
+/* Dragging look - slight lift instead of low opacity */
 .rank-item.dragging {
   cursor: grabbing;
   background: #f0f0f0;
@@ -345,6 +303,7 @@ body::before {
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
+/* Handle icon cursor + non-selectable text */
 .rank-handle {
   cursor: grab;
   user-select: none;
@@ -352,53 +311,15 @@ body::before {
   font-size: 1.2rem;
 }
 
+/* Ensure handle looks like a valid drag target when dragging */
 .rank-item.dragging .rank-handle {
   cursor: grabbing;
 }
 
+/* Label fills remaining space */
 .rank-label {
   flex: 1;
-  user-select: none;
+  user-select: none; /* also prevent selecting just in case */
 }
 
-/* =========================
-   START SCREEN
-========================= */
 
-.start-screen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.start-logo {
-  max-width: 180px;
-  margin-bottom: 20px;
-}
-
-.start-description {
-  max-width: 520px;
-  font-size: 1.05rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
-}
-
-/* (You’re using .answer-button for start buttons already; keeping this in case you re-add .start-button) */
-.start-button {
-  padding: 12px 28px;
-  font-size: 1rem;
-  background-color: #800000;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-.start-button:hover {
-  background-color: #a00000;
-}
