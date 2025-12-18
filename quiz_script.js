@@ -513,7 +513,7 @@ function getSaintUrl(name) {
   catch(e){ return null; }
 }
 
-function imageFilenameFromName(name, basePath = "images") {
+function imageFilenameFromName(name) {
   const file = slugifyName(name);
   return basePath ? `${basePath.replace(/\/?$/, "/")}${file}` : file;
 }
@@ -726,11 +726,11 @@ function showResult() {
   if (nameEl) nameEl.textContent = topSaint || "Results";
 
   if (imgEl && topSaint) {
-    imgEl.src = imageFilenameFromName(topSaint, "images");
+    imgEl.src = imageFilenameFromName(topSaint);
     imgEl.alt = topSaint;
     imgEl.onerror = function () {
       this.onerror = null;
-      this.src = imageFilenameFromName(topSaint, "images").replace(".jpg", ".png");
+      this.src = imageFilenameFromName(topSaint).replace(".jpg", ".png");
     };
   }
 
@@ -805,7 +805,7 @@ function showRelatedByTag(tag, excludeSaint) {
     card.className = "related-card";
 
     const img = document.createElement("img");
-    img.src = imageFilenameFromName(name, "images");
+    img.src = imageFilenameFromName(name);
     img.alt = name;
 
     const label = document.createElement("div");
