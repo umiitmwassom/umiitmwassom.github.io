@@ -1,18 +1,73 @@
+/* ===========================
+   Philosopher (Serif)
+=========================== */
+
+@font-face {
+  font-family: "Philosopher";
+  src: url("Philosopher-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Philosopher";
+  src: url("Philosopher-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Philosopher";
+  src: url("Philosopher-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Philosopher";
+  src: url("Philosopher-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+/* ===========================
+   Mulish (Sans-serif)
+=========================== */
+
+@font-face {
+  font-family: "Mulish";
+  src: url("Mulish-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mulish";
+  src: url("Mulish-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: italic;
+}
+
+
 body {
-  font-family: 'Georgia', serif;
+  font-family: "Mulish", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #ffffff;
   margin: 0;
   padding: 0;
   color: #333;
 
-    /* PARCHMENT BACKGROUND */
-  background-image: url("parchment-bg.jpg");
+   
+background-image: url("parchment-bg.png");
+background-repeat: no-repeat;       
+background-size: cover;             
+background-position: center;
+background-attachment: fixed;
 
-  background-attachment: fixed;
-  background-color: #f4efe4; /* fallback */
+  background-color: #f4efe4; 
 }
 
-/* Background shimmer container */
+
 body::before {
   content: "";
   position: fixed;
@@ -20,7 +75,7 @@ body::before {
   width: 100%; height: 100%;
 
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 
   background-image:
     radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%),
@@ -32,7 +87,44 @@ body::before {
   opacity: 0.45;
 }
 
-/* Smooth drifting movement */
+h1, h2, h3, h4,
+.quiz-title,
+#saint-name {
+  font-family: "Philosopher", Georgia, serif;
+}
+
+blockquote {
+  font-family: "Philosopher", Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+button,
+.answer-button,
+.start-button,
+.rank-move {
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+}
+
+#saint-name {
+  letter-spacing: 0.03em;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+
+
+
+
 @keyframes shimmerMove {
   0% {
     background-position: 0px 0px, 200px 100px, -150px -120px;
@@ -45,11 +137,33 @@ body::before {
   }
 }
 
+.progress-hidden #progress-bar {
+  display: none;
+}
+
+
 .quiz-container {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  margin-top: 40px; 
+  padding: 26px 22px;
   text-align: center;
+  position: relative;
+
+  background: #fff;
+  border-radius: 22px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.quiz-logo{
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 120px;
+  height: auto;
+  opacity: 0.95;
 }
 
 .quiz-title {
@@ -65,34 +179,69 @@ body::before {
 
 .answer-button {
   display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  margin: 12px auto;
+  background: #9b0d24;
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  border-radius: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.15s ease, opacity 0.2s ease;
 }
 
-.answer-button:hover {
-  background-color: #e0e0e0;
+.answer-button:hover { background: #7f0b1d; }
+.answer-button:active { transform: scale(0.97); }
+
+.answer-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
+
+.answer-button:disabled:hover {
+  background: #9b0d24;
+}
+
+
+#question-container > div .answer-button {
+  margin: 0;
+  width: 100%;
+}
+
+.saint-bio{
+  margin: 8px 0 14px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #2f2f2f;
+}
+
+
+
+/* =========================
+   GLOBAL PROGRESS BAR
+========================= */
 
 #progress-bar {
-  width: 100%;
-  height: 10px;
-  background-color: #eee;
-  margin-top: 30px;
-  border-radius: 5px;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 8px;
+
+  background: rgba(0,0,0,0.08);
+  z-index: 9999;
 }
 
 #progress-fill {
   height: 100%;
   width: 0%;
-  background-color: #800000;
-  transition: width 0.5s ease;
+  background: #9b0d24;
+  transition: width 0.4s ease;
 }
+
 
 .hidden {
   display: none !important;
@@ -113,7 +262,7 @@ body::before {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Main white card */
+
 .result-card {
   max-width: 900px;
   margin: 0 auto 60px;
@@ -126,7 +275,6 @@ body::before {
 }
 
 #saint-name {
-  font-family: "Georgia", serif;
   font-size: 2.2rem;
   color: #7a1f1f;
   margin-bottom: 16px;
@@ -184,7 +332,7 @@ body::before {
   padding: 30px 36px;
   background: #f3f1e8;
   border-radius: 18px;
-  font-family: "Georgia", serif;
+
   font-size: 1.05rem;
   line-height: 1.6;
   color: #2f2f2f;
@@ -195,24 +343,79 @@ body::before {
 .prayer-title {
   font-size: 1.4rem;
   margin-bottom: 14px;
-  font-family: "Georgia", serif;
 }
+
+.further-reading-wrap {
+  margin-top: 18px;
+  text-align: center;
+}
+
+
+.further-reading-btn {
+  display: inline-block;
+  background: #9b0d24;
+  color: #ffff !important;
+  text-decoration: none;
+
+  padding: 12px 28px;
+  border-radius: 14px;
+
+  font-family: inherit;     
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.further-reading-btn:hover {
+  background: #7f0b1d;
+}
+
+.further-reading-btn:active {
+  transform: scale(0.97);
+}
+
+
+
+
+.further-reading-btn:hover {
+  background: #7f0b1d;
+}
+
+/* =========================
+   POST–READING SECTION
+   (everything below Further readings)
+========================= */
+
+.post-reading-section{
+  max-width: 900px;
+  margin: 0 auto 60px;     
+  padding: 50px 40px 40px;
+  border-radius: 22px;
+  border: 2px solid #b8ad7f;
+  position: relative;
+  text-align: center;
+  background: #fff;
+}
+
 
 /* =========================
    RELATED SAINTS (Figma-like)
 ========================= */
 
-#related-saints {
+.post-reading-section{
   margin-top: 50px;
-  padding: 50px 40px 40px; /* extra top padding for intersecting pill */
+  padding: 50px 40px 40px; 
   border-radius: 22px;
   border: 2px solid #b8ad7f;
   position: relative;
   text-align: center;
-  background: transparent;
+  background: #fff;
 }
 
-/* Intersecting title pill */
+
+
 .related-title {
   position: absolute;
   top: 0;
@@ -227,14 +430,14 @@ body::before {
   font-weight: 600;
   line-height: 1;
 
-  border: 6px solid #ffffff; /* must match .result-card background */
+  border: 6px solid #ffffff; 
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   white-space: nowrap;
 }
 
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* bigger cards */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
   gap: 28px;
   margin-top: 10px;
   justify-items: center;
@@ -254,7 +457,7 @@ body::before {
   color: #800000;
 }
 
-/* Bigger images, no cropping */
+
 .related-card img {
   width: 180px;
   height: auto;
@@ -265,7 +468,6 @@ body::before {
 }
 
 .related-card .name {
-  font-family: "Georgia", serif;
   font-size: 1.05rem;
   margin-top: 4px;
   color: #2b2b2b;
@@ -282,9 +484,14 @@ body::before {
    RETAKE BUTTON (CTA)
 ========================= */
 
-#retake-button {
-  display: block;
-  margin: 50px auto 0;
+.retake-wrap{
+  padding: 40px 0 60px;  
+  text-align: center;
+}
+
+#retake-button{
+  display: inline-block; 
+  margin: 0;
   background: #9b0d24;
   color: #fff;
   border: none;
@@ -293,6 +500,7 @@ body::before {
   border-radius: 14px;
   cursor: pointer;
 }
+
 
 #retake-button:hover {
   background: #7f0b1d;
@@ -312,19 +520,18 @@ body::before {
   border: 1px solid #ccc;
 }
 
-/* Remove list bullets + spacing */
 .rank-list { 
   list-style: none; 
   padding: 0; 
   margin: 0 0 12px 0; 
 }
 
-/* Make rank items look like clean draggable buttons */
+
 .rank-item {
   display: flex;
-  gap: 8px;
-  align-items: center;
-  padding: 12px 14px;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px 16px;
   margin-bottom: 10px;
   background: #fff;
   border: 1px solid #ccc;
@@ -333,6 +540,27 @@ body::before {
   cursor: grab;
   transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
 }
+
+.rank-controls {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.rank-move {
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rank-move:active {
+  transform: scale(0.98);
+}
+
 
 .rank-item:hover {
   background: #f5f5f5;
@@ -359,46 +587,355 @@ body::before {
 .rank-label {
   flex: 1;
   user-select: none;
+
+
+  white-space: normal;
+  overflow: visible;
+  word-break: break-word;
+
+  min-width: 0;
 }
 
 /* =========================
-   START SCREEN
+   START SCREEN (New layout)
 ========================= */
 
-.start-screen {
+.start-screen{
   min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+
+.start-hero{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100vw;
+
+  min-width: 1100px;
+}
+
+
+#start-screen{
+  overflow-x: auto;     
+}
+
+.start-hero{
+  min-width: 1100px;    
+}
+
+
+.start-copy{
+  padding: clamp(32px, 5vw, 72px);
+  align-self: center;
+  text-align: left;
+
+  background: none;      
+  backdrop-filter: none; 
+}
+
+
+
+.start-brand {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 20px;
+  gap: 18px;
+  margin-bottom: 18px;
 }
 
 .start-logo {
-  max-width: 180px;
-  margin-bottom: 20px;
+  max-width: 210px;
+  height: auto;
+}
+
+.start-title {
+  color: #7a1f1f;
+  font-size: clamp(2rem, 3vw, 2.9rem);
+  line-height: 1.05;
+  margin: 10px 0 18px;
 }
 
 .start-description {
-  max-width: 520px;
-  font-size: 1.05rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
+  max-width: 620px;
+  font-size: 1.06rem;
+  line-height: 1.55;
+  margin: 0 0 26px;
+  color: #2f2f2f;
 }
 
-/* (You’re using .answer-button for start buttons already; keeping this in case you re-add .start-button) */
-.start-button {
-  padding: 12px 28px;
-  font-size: 1rem;
-  background-color: #800000;
+.start-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.start-cta {
+  background: #9b0d24;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  padding: 12px 22px;
+  border-radius: 999px; 
+  font-family: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: background 0.25s ease, transform 0.15s ease;
 }
 
-.start-button:hover {
-  background-color: #a00000;
+.start-cta:hover { background: #7f0b1d; }
+.start-cta:active { transform: scale(0.98); }
+
+.start-art{
+  position: relative;
+  height: 100vh;
+  overflow: hidden; 
 }
+
+
+.start-mosaic{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+
+.mosaic-track{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;             
+  transform: translate3d(0,0,0);
+  will-change: transform;
+  animation: mosaicScroll 18s linear infinite;
+}
+
+
+.mosaic-tile{
+  width: 100%;
+  height: 50%;                
+  background-image: url("start-mosaic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+@keyframes mosaicScroll{
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+
+
+
+
+
+.start-people{
+  position: absolute;
+  right: -4vw;          
+  bottom: 0;
+
+  height: clamp(60vh, 70vw, 92vh); 
+  width: auto;
+  max-width: none;
+
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px){
+  .start-hero{ grid-template-columns: 1fr; }
+
+  .start-art{ min-height: 55vh; }
+
+  .start-people{
+    right: -10%;
+    height: 82vh;
+    max-height: 82vh;
+  }
+
+  .start-mosaic{
+    width: 100%;
+  }
+}
+
+
+
+
+#question-container h2 {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+
+.global-logo{
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  width: 120px;
+  height: auto;
+  z-index: 1000;         
+  opacity: 0.95;
+  display: none;
+}
+
+
+.quiz-container:not(.hidden) ~ .global-logo,
+.quiz-container:not(.hidden) + .global-logo{
+  display: block;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .quiz-container {
+    max-width: 94vw;
+    margin: 16px auto;
+    padding: 18px 14px;
+    position: relative;
+
+
+    background: #fff;
+    border-radius: 18px;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.12),
+      inset 0 0 0 1px rgba(0,0,0,0.05);
+  }
+
+    .quiz-logo{
+    width: 95px;
+    top: 14px;
+    left: 14px;
+  }
+
+    .start-description {
+    max-width: 92vw;
+    font-size: 1.02rem;
+  }
+
+.start-logo {
+  max-width: 155px; 
+
+}
+
+
+  .further-reading-wrap {
+  margin-top: 14px;
+}
+
+
+
+
+.answer-button {
+  display: block;
+  margin: 12px auto;
+  background: #9b0d24;
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+.answer-button:hover { background: #7f0b1d; }
+.answer-button:active { transform: scale(0.97); }
+
+.answer-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #9b0d24;
+}
+.answer-button:disabled:hover {
+  background: #9b0d24;
+}
+
+
+  .rank-item {
+    padding: 14px 12px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .rank-handle {
+    font-size: 1.4rem;
+    padding: 4px 6px;
+  }
+
+  .rank-label {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+
+  #result-container {
+    padding: 18px;
+  }
+
+  .result-card {
+    padding: 22px 16px 26px;
+    border-radius: 18px;
+  }
+
+  #saint-image {
+    float: none;
+    display: block;
+    width: min(320px, 85vw);
+    margin: 0 auto 14px;
+    border-radius: 18px;
+  }
+
+  #saint-name {
+    font-size: 1.8rem;
+  }
+
+  .saint-prayer {
+    padding: 18px 16px;
+    margin: 18px 0;
+  }
+
+
+
+
+  .related-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .related-card img {
+    width: min(220px, 70vw);
+  }
+
+  .related-title {
+    font-size: 1rem;
+    padding: 10px 18px;
+    white-space: normal;
+    text-align: center;
+    max-width: 90%;
+  }
+
+}
+

@@ -7,29 +7,64 @@
   <link rel="stylesheet" href="quiz_style.css"/>
 </head>
 <body>
-   <!-- START SCREEN -->
-  <div id="start-screen" class="start-screen">
-    <img src="logo.png" alt="Jesuit Logo" class="start-logo" />
 
-    <p class="start-description">
-      This short quiz helps you discover which Jesuit saint you most closely
-      resemble, based on virtues, spiritual tendencies, and ways of serving
-      others.
-    </p>
+<img src="logo.png" alt="Jesuit Logo" class="global-logo" />
 
-    <button id="start-5" class="answer-button">5 Questions</button>
-<button id="start-10" class="answer-button">10 Questions</button>
+<div id="start-screen" class="start-screen">
+  <div class="start-hero">
 
-  </div>
-  <div class="quiz-container hidden">
-    <h1 class="quiz-title">Which Jesuit Saint Are You?</h1>
-    <div id="question-container"></div>
-    <div id="progress-bar">
-      <div id="progress-fill"></div>
+  
+    <div class="start-copy">
+      <div class="start-brand">
+        <img src="logo.png" alt="Jesuit Logo" class="start-logo" />
+      </div>
+
+      <h1 class="start-title">
+        Befriend a saint from the Society of Jesus to help you live a holier life!
+      </h1>
+
+      <p class="start-description">
+        The saints of the Catholic Church are not merely information to be consumed.
+        <br><br>
+        By doing this quiz, you will be matched with a saint from the Society of Jesus (the Jesuits)
+        whose life of virtue and service resonates with your desire to grow in holiness and to serve others.
+        <br><br>
+        Befriend him, and allow him to intercede for you in a particular and personal way!
+      </p>
+
+      <div class="start-actions">
+        <button id="start-5" class="start-cta">Take the 5-question quiz</button>
+        <button id="start-10" class="start-cta">Take the 10-question quiz</button>
+      </div>
     </div>
+
+    <div class="start-art" aria-hidden="true">
+<div class="start-mosaic" aria-hidden="true">
+  <div class="mosaic-track">
+    <div class="mosaic-tile"></div>
+    <div class="mosaic-tile"></div>
   </div>
-  <div id="result-container" class="hidden">
-  <h2>You have been matched with this Jesuit saint:</h2>
+</div>
+
+      <img class="start-people" src="start-people.png" alt="" />
+    </div>
+
+  </div>
+</div>
+  <div id="progress-bar">
+    <div id="progress-fill"></div>
+  </div>
+<div class="quiz-container hidden">
+
+
+
+  <h1 class="quiz-title"></h1>
+  <div id="question-container"></div>
+
+</div>
+
+<div id="result-container" class="hidden">
+  <h2 id="match-heading">You have been matched with this Jesuit saint:</h2>
 
   <div class="result-card">
     <h3 id="saint-name"></h3>
@@ -37,13 +72,19 @@
 
     <div id="saint-tags"></div>
 
-    <p id="saint-message"></p>
+<p id="saint-message"></p>
+</div>
 
-    <div id="related-saints"></div>
+<!-- Keep ONLY ONE -->
+<div id="post-reading-section" class="post-reading-section"></div>
 
+
+  <div class="retake-wrap">
     <button id="retake-button">Retake Quiz</button>
   </div>
 </div>
+
+
 
   <script src="quiz_script.js"></script>
 </body>

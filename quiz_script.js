@@ -9,8 +9,23 @@ function slugifyName(name) {
 
 
 
-let selectedQuizMode = 5; // default
+let selectedQuizMode = 5; 
 
+
+const globalLogo = document.querySelector(".global-logo");
+
+function showLogo(show){
+  if (!globalLogo) return;
+  globalLogo.style.display = show ? "block" : "none";
+}
+
+showLogo(false);
+
+document.body.classList.add("progress-hidden");
+
+function withSaintPrefix(name) {
+  return name ? `Saint ${name}` : "";
+}
 
 
 
@@ -33,7 +48,7 @@ const questionSets = {
     {
       text: "In which of these aspects of your faith do you wish to grow the most?",
       answers: [
-        { text: "To establish and maintain a strong prayer life", tags: ["Spiritual depth", "Devotion"] },
+        { text: "To establish and maintain a strong prayer life", tags: ["Spiritual Life", "Devotion"] },
         { text: "Being knowledgeable and sharing the beauty of the Catholic faith", tags: ["Catechesis", "Missionary zeal"] },
         { text: "Standing my ground when being challenged in my faith", tags: ["Ecumenism", "Resilience"] },
         { text: "Having a heart for the poor and marginalized in society", tags: ["Social justice", "Marginalized"] }
@@ -44,7 +59,7 @@ const questionSets = {
       answers: [
         { text: "Not knowing God’s love for me on a personal level", tags: ["Devotion"] },
         { text: "Admitting that I am wrong", tags: ["Humility"] },
-        { text: "Accepting failure and letting it go", tags: ["Interior freedom", "Courage"] },
+        { text: "Accepting failure and letting it go", tags: ["Interior Freedom", "Courage"] },
         { text: "Feeling stressed out by many responsibilities", tags: ["Perseverance"] }
       ]
     },
@@ -56,14 +71,14 @@ const questionSets = {
         { text: "Learning a culture patiently and finding God already present within it", tags: ["Patience", "Inculturation"] },
         { text: "Living without a stable home base and constantly being sent elsewhere", tags: ["Missionary"] },
         { text: "Understanding and confronting the systemic roots of social sin", tags: ["Social justice", "Marginalized"] },
-        { text: "Sowing seeds without knowing if or when they will bear fruit", tags: ["Interior freedom", "Perseverance"] }
+        { text: "Sowing seeds without knowing if or when they will bear fruit", tags: ["Interior Freedom", "Perseverance"] }
       ]
     },
     // (Growth: Evangelization)
     {
       text: "In which of these ways of evangelization do you most wish to grow?",
       answers: [
-        { text: "Teaching the Catholic faith clearly and articulately", tags: ["Catechesis", "Intellectual rigor"] },
+        { text: "Teaching the Catholic faith clearly and articulately", tags: ["Catechesis", "Intellectual Rigor"] },
         { text: "Walking patiently with those in greatest need of mercy", tags: ["Spiritual accompaniment"] },
         { text: "Discerning God’s will in the concrete situations of life", tags: ["Wisdom", "Discernment"] },
         { text: "Advocating for the marginalized and voiceless", tags: ["Social justice"] }
@@ -77,7 +92,7 @@ const questionSets = {
         { text: "Figuring out God’s will in this situation", tags: ["Wisdom"] },
         { text: "Accepting that I do not have control over everything", tags: ["Humility"] },
         { text: "Saying yes to an unknown that feels uncomfortable", tags: ["Courage"] },
-        { text: "Letting go of a role I love for the sake of others", tags: ["Interior freedom", "Sacrifice"] }
+        { text: "Letting go of a role I love for the sake of others", tags: ["Interior Freedom", "Sacrifice"] }
       ]
     },
     {
@@ -85,7 +100,7 @@ const questionSets = {
       answers: [
         { text: "Finding the right words to bring comfort", tags: ["Wisdom"] },
         { text: "Being fully present despite discomfort or revulsion", tags: ["Courage"] },
-        { text: "Accepting the limits of what I can do", tags: ["Humility", "Interior freedom"] },
+        { text: "Accepting the limits of what I can do", tags: ["Humility", "Interior Freedom"] },
         { text: "Returning regularly even when it is inconvenient", tags: ["Perseverance"] }
       ]
     },
@@ -93,8 +108,8 @@ const questionSets = {
       text: "If you were serving in a ministry for the poor, what would stretch you most?",
       answers: [
         { text: "Giving generously of time when I feel exhausted", tags: ["Magnanimity"] },
-        { text: "Advocating for the ministry and seeking resources to sustain it", tags: ["Leadership"] },
-        { text: "Understanding the roots of poverty and empathizing deeply", tags: ["Intellectual rigor", "Marginalized"] },
+        { text: "Speaking to stakeholders to raise the ministry's profile, and to look for different revenue streams to keep the ministry afloat", tags: ["Leadership"] },
+        { text: "Understanding the roots of poverty and empathizing deeply", tags: ["Intellectual Rigor", "Marginalized"] },
         { text: "Continuing even when results seem minimal", tags: ["Perseverance", "Courage"] }
       ]
     },
@@ -110,7 +125,7 @@ const questionSets = {
     {
       text: "If you were asked to lead a discussion on Catholic social teaching, what would be hardest?",
       answers: [
-        { text: "Explaining complex ideas simply", tags: ["Educator", "Intellectual rigor"] },
+        { text: "Explaining complex ideas simply", tags: ["Educator", "Intellectual Rigor"] },
         { text: "Encouraging respectful dialogue among differing views", tags: ["Dialogue"] },
         { text: "Leading confidently when discussion becomes heated", tags: ["Leadership", "Courage"] },
         { text: "Admitting when I need to learn more", tags: ["Humility"] }
@@ -126,7 +141,7 @@ const questionSets = {
     {
       text: "Where do you most desire to serve the Lord and his people?",
       answers: [
-        { text: "Classrooms as a teacher or catechist", tags: ["Catechesis", "Intellectual rigor"] },
+        { text: "Classrooms as a teacher or catechist", tags: ["Catechesis", "Intellectual Rigor"] },
         { text: "Homeless shelters and prisons", tags: ["Marginalized", "Social justice"] },
         { text: "Planning and leading evangelization initiatives", tags: ["Leadership", "Visionary"] },
         { text: "One-on-one spiritual accompaniment", tags: ["Wisdom", "Spiritual accompaniment"] }
@@ -142,7 +157,7 @@ const questionSets = {
       ]
     },
     {
-      text: "Which form of peacemaking attracts you most?",
+      text: "'Blessed are the peacemakers'; Which form of peacemaking attracts you most?",
       answers: [
         { text: "Cultivating interior peace of heart", tags: ["Devotion"] },
         { text: "Dialogue to find common ground", tags: ["Ecumenism"] },
@@ -151,7 +166,7 @@ const questionSets = {
       ]
     },
 
-    // Added from your doc (Service: Action)
+
     {
       text: "Which of these ways of communicating the Catholic faith attracts you the most?",
       answers: [
@@ -162,11 +177,11 @@ const questionSets = {
       ]
     },
 
-    // Added from your doc (Service: Missionary)
+
     {
       text: "When it comes to evangelization, into which type of mission territory do you find the most attracted to enter?",
       answers: [
-        { text: "Established cultures in the East", tags: ["Inculturation", "Intellectual rigor"] },
+        { text: "Established cultures in the East", tags: ["Inculturation", "Intellectual Rigor"] },
         { text: "Indigenous cultures around the world", tags: ["Inculturation", "Indigenous"] },
         { text: "The post-Christian culture in Europe", tags: ["Dialogue"] },
         { text: "Evangelizing the baptized in my own backyard", tags: ["Locale", "Apostolic zeal"] }
@@ -193,7 +208,7 @@ const questionSets = {
     {
       text: "Which way of seeking spiritual depth do you desire most?",
       answers: [
-        { text: "Understanding the faith deeply in order to communicate it well", tags: ["Intellectual rigor", "Educator"] },
+        { text: "Understanding the faith deeply in order to communicate it well", tags: ["Intellectual Rigor", "Educator"] },
         { text: "Learning the movements of the heart to help others follow God", tags: ["Wisdom", "Spiritual accompaniment"] },
         { text: "Understanding society to evangelize creatively", tags: ["Missionary", "Inculturation"] },
         { text: "Embracing hardship for the sake of Christian witness", tags: ["Courage", "Sacrifice"] }
@@ -205,7 +220,7 @@ const questionSets = {
         { text: "Finding and serving Christ in the poor", tags: ["Social justice", "Marginalized"] },
         { text: "Having my heart formed after the Heart of Jesus", tags: ["Devotion"] },
         { text: "Finding God in the ordinary and mundane", tags: ["Holiness in ordinary life"] },
-        { text: "Being fully available to be sent where needs are greatest", tags: ["Missionary", "Interior freedom"] }
+        { text: "Being fully available to be sent where needs are greatest", tags: ["Missionary", "Interior Freedom"] }
       ]
     }
   ]
@@ -217,10 +232,10 @@ function pickNShuffled(arr, n) {
 }
 
 function buildQuizQuestionsByMode(mode) {
-  // mode: 5 or 10
+
   const plan = (mode === 10)
     ? { virtues: 4, service: 4, spiritualDepth: 2 }
-    : { virtues: 2, service: 2, spiritualDepth: 1 }; // default = 5
+    : { virtues: 2, service: 2, spiritualDepth: 1 };
 
   const v = pickNShuffled(questionSets.virtues, plan.virtues).map(q => ({ ...q, category: "virtues" }));
   const s = pickNShuffled(questionSets.service, plan.service).map(q => ({ ...q, category: "service" }));
@@ -231,7 +246,7 @@ function buildQuizQuestionsByMode(mode) {
 
 
 function shuffleArray(arr) {
-  // Fisher–Yates shuffle (unbiased)
+
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -241,7 +256,7 @@ function shuffleArray(arr) {
 
 
 
-// Default (if user hasn't chosen yet)
+
 let shuffledQuestions = buildQuizQuestionsByMode(5);
 
 
@@ -262,7 +277,7 @@ const saintProfiles = {
     "Zeal"
   ],
   "Peter Faber": [
-    "Accompaniment",
+    "Spiritual accompaniment",
     "Wisdom",
     "Ecumenism",
     "Spiritual Life"
@@ -271,12 +286,12 @@ const saintProfiles = {
     "Sacrifice",
     "Asia",
     "Courage",
-    "Perserverance",
+    "Perseverance",
     "Locale"
   ],
   "Claude La Colombiere": [
     "Devotion",
-    "Accompaniment",
+    "Spiritual accompaniment",
     "Wisdom",
     "Spiritual Life"
   ],
@@ -307,7 +322,7 @@ const saintProfiles = {
     "Europe",
     "Zeal",
     "Marginalized",
-    "Perserverence"
+    "Perseverance"
   ],
   "Aloysius Gonzaga": [
     "Purity",
@@ -327,13 +342,13 @@ const saintProfiles = {
     "Marginalized",
     "Zeal",
     "Catechesis",
-    "Perserverence"
+    "Perseverance"
   ],
   "Robert Bellarmine": [
     "Leadership",
     "Intellectual Rigor",
     "Catechesis",
-    "Accompaniment",
+    "Spiritual accompaniment",
     "Dialogue"
   ],
   "Francis Borgia": [
@@ -366,7 +381,7 @@ const saintProfiles = {
   ],
   "Alphonsus Rodriguez": [
     "Humility",
-    "Accompaniment",
+    "Spiritual accompaniment",
     "Daily Life"
   ],
   "Stanislaus Kostka": [
@@ -377,7 +392,7 @@ const saintProfiles = {
   ],
   "Joseph Pignatelli": [
     "Leadership",
-    "Perserverance",
+    "Perseverance",
     "Humility",
     "Courage",
     "Marginalized"
@@ -469,6 +484,39 @@ const saintTexts = {
     "prayer": "Heavenly Father, you have given St. Edmund Campion an eloquence to preach the Kingdom of God amidst great trials and tribulations. Through his intercession, give us the same courage so that we may fearlessly give witness to you. We ask this through Christ, our Lord. Amen."
   }
 };
+
+// ============================
+// BIOS
+// ============================
+const saintBios = {
+  "Ignatius of Loyola": "As the founder of the Society of Jesus, St. Ignatius of Loyola’s spirituality and ways of proceeding have been embraced by countless Jesuits for hundreds of years.",
+  "Peter Faber": "One of the ten “First Companions”, St. Ignatius of Loyola considers St. Peter Faber as the best at giving the Spiritual Exercises.",
+  "Claude La Colombiere": "St. Claude la Colombière is known for propagating the devotion of the Sacred Heart of Jesus, alongside St. Margaret Mary Alacoque.",
+  "Peter Canisius": "Named a Doctor of the Church, St. Peter Canisius was influential in the restoration of the Catholic faith in parts of Germany during the Reformation.",
+  "Jose Maria Rubio": "St. José Maria Rubio was given the title “The Apostle of Madrid” for his tireless ministry in the city.",
+  "Jose de Anchieta": "St. José de Anchieta was given the title “The Apostle of Brazil” for spearheading countless evangelization initiatives in the country.",
+  "John Francis Regis": "St. John Francis Regis is known for ministering to often neglected villages in rural France.",
+  "Aloysius Gonzaga": "As a young Jesuit, St. Aloysius Gonzaga died while ministering to plague victims.",
+  "Alberto Hurtado": "St. Alberto Hurtado was a tireless advocate for disenfranchised youth, worker’s rights, and published a monthly magazine that explains the Church’s social teachings.",
+  "Peter Claver": "Nicknamed “The slave of slaves”, St. Peter Claver devoted his entire life to serve and give dignity to the slaves who had been brought over from Africa.",
+  "Robert Bellarmine": "Named a Doctor of the Church, St. Robert Bellarmine composed several catechisms and was known to have kept up a correspondence with the scientist Galileo Galilei.",
+  "Francis Borgia": "St. Francis Borgia left his dukedom and riches behind to join the Jesuits.",
+  "Isaac Jogues": "Despite having had several of his fingers mutilated in mockery of his celebrating Mass, St. Isaac Jogues chose to return to his past captors to evangelize them.",
+  "Jean de Brebeuf": "A seasoned missionary in Huronia, St. Jean de Brébeuf composed the first French-Wendat dictionary, as well as the first Christmas carol in the Wendat language.",
+  "Noel Chabanel": "Despite an utter inability of master the Wendat language, St. Noël Chabanel made a private vow to remain in Huronia until his death.",
+  "Alphonsus Rodriguez": "Widowed and with his children dead, St. Alphonsus Rodriguez became a Jesuit brother and is known for serving as a porter who gave spiritual counsel to all who entered.",
+  "Stanislaus Kostka": "Despite his father’s objections, St. Stanislaus Kostka resolutely walked from Poland to Rome to join the Jesuits.",
+  "Joseph Pignatelli": "During the Suppression of the Society of Jesus, St. Joseph Pignatelli took on the gargantuan task of caring for all the Jesuits who had been exiled from their countries.",
+  "Edmund Campion": "St. Edmund Campion was best known as the composer of a defense of the Catholic faith called Campion’s Brag.",
+  "Francis Xavier": "St. Francis Xavier is known as one of the first Jesuit missionaries and is best known for bringing the Catholic faith to India, Japan, and Southeast Asia.",
+  "Paul Miki": "St. Paul Miki is a Japanese Jesuit martyr who continued to preach even as he was dying from the cross."
+};
+
+Object.keys(saintBios).forEach(name => {
+  saintTexts[name] = { ...(saintTexts[name] || {}), bio: saintBios[name] };
+});
+
+
 const saintUrls = {
   "Ignatius of Loyola": { url: "https://www.jesuits.global/saint-blessed/saint-ignatius-of-loyola/" },
   "Francis Xavier": { url: "https://www.jesuits.global/saint-blessed/saint-francis-xavier/" },
@@ -507,6 +555,12 @@ Object.keys(saintUrls).forEach(name => {
 
 let currentQuestionIndex = 0;
 let tagScores = {};
+let lastSortedSaints = null;
+
+
+let displayOrders = [];
+let userOrders = [];
+
 
 function getSaintUrl(name) {
   try { return (saintTexts && saintTexts[name] && saintTexts[name].url) ? saintTexts[name].url : null; }
@@ -525,17 +579,57 @@ function updateProgressBar() {
   fill.style.width = percent + "%";
 }
 
+function recomputeScores() {
+  tagScores = {};
+
+  for (let qi = 0; qi < userOrders.length; qi++) {
+    const order = userOrders[qi];
+    if (!order) continue;
+
+    const q = shuffledQuestions[qi];
+    if (!q || !q.answers) continue;
+
+    const N = order.length;
+
+    order.forEach((answerIndex, position) => {
+      const ans = q.answers[answerIndex];
+      if (!ans || !ans.tags) return;
+
+      const score = N - position;
+      ans.tags.forEach((tag) => {
+        if (!tagScores[tag]) tagScores[tag] = 0;
+        tagScores[tag] += score;
+      });
+    });
+  }
+}
+
+function isMobileUI() {
+  return window.matchMedia("(max-width: 768px)").matches || ("ontouchstart" in window);
+}
+
+function moveRankItem(li, direction) {
+  const list = li.parentElement;
+  if (!list) return;
+
+  if (direction === "up" && li.previousElementSibling) {
+    list.insertBefore(li, li.previousElementSibling);
+  } else if (direction === "down" && li.nextElementSibling) {
+    list.insertBefore(li.nextElementSibling, li);
+  }
+}
+
+
 
 function showQuestion() {
   const container = document.getElementById("question-container");
   if (!container) return;
   container.innerHTML = "";
 
-if (currentQuestionIndex >= shuffledQuestions.length) {
-  showResult();
-  return;
-}
-
+  if (currentQuestionIndex >= shuffledQuestions.length) {
+    showResult();
+    return;
+  }
 
   const q = shuffledQuestions[currentQuestionIndex];
 
@@ -544,19 +638,38 @@ if (currentQuestionIndex >= shuffledQuestions.length) {
   h2.textContent = q.text;
   container.appendChild(h2);
 
+
   const hint = document.createElement("p");
   hint.style.fontStyle = "italic";
   hint.style.marginBottom = "10px";
-  hint.textContent = "Drag to sort from top (most like you) to bottom (least like you).";
+  hint.textContent = "Arrange from most to least.";
   container.appendChild(hint);
 
+
+  if (!displayOrders[currentQuestionIndex]) {
+    displayOrders[currentQuestionIndex] = shuffleArray(
+      [...Array(q.answers.length).keys()]
+    );
+  }
+
+  const renderOrder =
+    userOrders[currentQuestionIndex] || displayOrders[currentQuestionIndex];
+
+
   const list = document.createElement("ul");
-  list.className = "rank-list"; 
-  q.answers.forEach((ans, i) => {
+  list.className = "rank-list";
+
+  renderOrder.forEach((originalIndex) => {
+    const ans = q.answers[originalIndex];
+
     const li = document.createElement("li");
     li.className = "rank-item";
-    li.draggable = true;
-    li.dataset.answerIndex = String(i);
+
+
+    li.draggable = !isMobileUI();
+
+
+    li.dataset.answerIndex = String(originalIndex);
 
     const handle = document.createElement("span");
     handle.className = "rank-handle";
@@ -568,49 +681,103 @@ if (currentQuestionIndex >= shuffledQuestions.length) {
 
     li.appendChild(handle);
     li.appendChild(label);
+
+
+    if (isMobileUI()) {
+      const controls = document.createElement("div");
+      controls.className = "rank-controls";
+
+      const upBtn = document.createElement("button");
+      upBtn.type = "button";
+      upBtn.className = "rank-move";
+      upBtn.textContent = "↑";
+      upBtn.addEventListener("click", () => moveRankItem(li, "up"));
+
+      const downBtn = document.createElement("button");
+      downBtn.type = "button";
+      downBtn.className = "rank-move";
+      downBtn.textContent = "↓";
+      downBtn.addEventListener("click", () => moveRankItem(li, "down"));
+
+      controls.appendChild(upBtn);
+      controls.appendChild(downBtn);
+      li.appendChild(controls);
+    }
+
     list.appendChild(li);
   });
+
   container.appendChild(list);
 
-  enableDragSort(list);
 
-  // Submit
-  const submitBtn = document.createElement("button");
-  submitBtn.type = "button";
-  submitBtn.classList.add("answer-button");
-  submitBtn.textContent = "Next Question";
-  container.appendChild(submitBtn);
+  if (!isMobileUI()) enableDragSort(list);
 
-  submitBtn.addEventListener("click", () => {
+
+  const nav = document.createElement("div");
+  nav.style.display = "flex";
+  nav.style.justifyContent = "space-between";
+  nav.style.gap = "12px";
+  nav.style.marginTop = "14px";
+
+ 
+  const backBtn = document.createElement("button");
+  backBtn.type = "button";
+  backBtn.classList.add("answer-button");
+  backBtn.textContent = "Back";
+  backBtn.disabled = (currentQuestionIndex === 0);
+
+
+  const nextBtn = document.createElement("button");
+  nextBtn.type = "button";
+  nextBtn.classList.add("answer-button");
+  nextBtn.textContent =
+    (currentQuestionIndex === shuffledQuestions.length - 1)
+      ? "See Results"
+      : "Next Question";
+
+  nav.appendChild(backBtn);
+  nav.appendChild(nextBtn);
+  container.appendChild(nav);
+
+
+  function saveCurrentOrder() {
     const items = Array.from(list.querySelectorAll(".rank-item"));
-    if (items.length !== q.answers.length) return;
+    const order = items.map(li => parseInt(li.dataset.answerIndex, 10));
+    userOrders[currentQuestionIndex] = order;
+  }
 
-    // Scoring
-    const N = items.length;
-    items.forEach((li, position) => {
-      const ans = q.answers[parseInt(li.dataset.answerIndex, 10)];
-      const score = N - position;
-      ans.tags.forEach(tag => {
-        if (!tagScores[tag]) tagScores[tag] = 0;
-        tagScores[tag] += score;
-      });
-    });
+
+  backBtn.addEventListener("click", () => {
+    if (currentQuestionIndex === 0) return;
+
+    saveCurrentOrder();
+    recomputeScores(); 
+
+    currentQuestionIndex--;
+    updateProgressBar();
+    showQuestion();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    saveCurrentOrder();
+    recomputeScores();
 
     currentQuestionIndex++;
-updateProgressBar();
-if (currentQuestionIndex < shuffledQuestions.length) {
-  showQuestion();
-} else {
-  showResult();
-}
+    updateProgressBar();
 
+    if (currentQuestionIndex < shuffledQuestions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
   });
 }
 
+
 function enableDragSort(listEl) {
-  // Use Pointer Events when available for smoother drag (touch + mouse)
+
   if (!window.PointerEvent) {
-    // Fallback: original HTML5 drag & drop behavior
+
     let dragging = null;
 
     listEl.addEventListener("dragstart", (e) => {
@@ -671,7 +838,7 @@ function enableDragSort(listEl) {
     const li = e.target.closest(".rank-item");
     if (!li || !listEl.contains(li)) return;
 
-    // For mouse, only respond to primary button
+
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
     activeItem = li;
@@ -682,7 +849,6 @@ function enableDragSort(listEl) {
     window.addEventListener("pointercancel", endDrag);
   });
 
-  // Disable native drag to avoid conflicts when Pointer Events are used
   const items = listEl.querySelectorAll(".rank-item");
   items.forEach((li) => {
     li.draggable = false;
@@ -705,73 +871,171 @@ function getDragAfterElement(container, y) {
   return closest.element;
 }
 
-function showResult() {
-  const quizContainer = document.querySelector(".quiz-container");
-  const resultContainer = document.getElementById("result-container");
-  if (quizContainer) quizContainer.classList.add("hidden");
-  if (resultContainer) resultContainer.classList.remove("hidden");
+function renderSaintProfile(saintName, isMatch = false) {
 
-  // Score each saint by summing their tag points
-  const saintScores = {};
-  for (const [saint, tags] of Object.entries(saintProfiles)) {
-    saintScores[saint] = tags.reduce((sum, tag) => sum + (tagScores[tag] || 0), 0);
+    const matchHeading = document.getElementById("match-heading");
+  if (matchHeading) {
+    matchHeading.style.display = isMatch ? "block" : "none";
   }
-  const [topSaint] = Object.entries(saintScores).sort((a, b) => b[1] - a[1])[0] || [null];
+
 
   const nameEl = document.getElementById("saint-name");
   const imgEl  = document.getElementById("saint-image");
   const msgEl  = document.getElementById("saint-message");
   const tagsEl = document.getElementById("saint-tags");
 
-  if (nameEl) nameEl.textContent = topSaint || "Results";
+  if (nameEl) nameEl.textContent = saintName ? withSaintPrefix(saintName) : "Results";
 
-  if (imgEl && topSaint) {
-    imgEl.src = imageFilenameFromName(topSaint, "");
-    imgEl.alt = topSaint;
+  if (imgEl && saintName) {
+    imgEl.src = imageFilenameFromName(saintName, "");
+    imgEl.alt = saintName;
     imgEl.onerror = function () {
       this.onerror = null;
-      this.src = imageFilenameFromName(topSaint, "").replace(".jpg", ".png");
+      this.src = imageFilenameFromName(saintName, "").replace(".jpg", ".png");
     };
   }
 
   if (msgEl) {
     let html = "";
-    const info = (saintTexts && saintTexts[topSaint]) ? saintTexts[topSaint] : null;
+    const info = (saintTexts && saintTexts[saintName]) ? saintTexts[saintName] : null;
+
     if (info) {
-      const quote = info.quote ? `“${info.quote}”` : "";
-  const prayer = info.prayer
+const bio = info.bio ? `<p class="saint-bio">${info.bio}</p>` : "";
+const quote = info.quote ? `<blockquote>“${info.quote}”</blockquote>` : "";
+
+const prayer = info.prayer
   ? `
     <div class="saint-prayer">
       <h4 class="prayer-title">Let us pray:</h4>
       <p>${info.prayer}</p>
     </div>
+
+    ${info.url ? `
+      <div class="further-reading-wrap">
+        <a class="further-reading-btn" href="${info.url}" target="_blank" rel="noopener">
+          Further readings
+        </a>
+      </div>
+    ` : ""}
   `
   : "";
 
 
-      html = [quote ? `<blockquote>${quote}</blockquote>` : "", prayer].filter(Boolean).join("");
+
+html = [bio, quote, prayer].filter(Boolean).join("");
+
+
     }
-    if (!html && topSaint) html = `Interested in learning more about ${topSaint}?`;
+
+    if (!html && saintName) html = `Interested in learning more about ${saintName}?`;
     msgEl.innerHTML = html || "";
   }
 
- if (tagsEl) {
-  tagsEl.innerHTML = "";
-  const tags = saintProfiles[topSaint] || [];
 
-  tags.forEach(tag => {
-    const pill = document.createElement("span");
-    pill.classList.add("tag-pill");
-    pill.textContent = tag;
-    pill.addEventListener("click", () => showRelatedByTag(tag, topSaint));
-    tagsEl.appendChild(pill);
-  });
+  if (tagsEl) {
+    tagsEl.innerHTML = "";
+    const tags = saintProfiles[saintName] || [];
 
-  // ⭐ NEW: auto-show related saints for first tag
-  if (tags.length > 0) {
-    showRelatedByTag(tags[0], topSaint);
+    tags.forEach(tag => {
+      const pill = document.createElement("span");
+      pill.classList.add("tag-pill");
+      pill.textContent = tag;
+      pill.addEventListener("click", () => showRelatedByTag(tag, saintName));
+      tagsEl.appendChild(pill);
+    });
+
+
   }
 }
+
+function showOtherJesuitSaints(sortedSaints, topSaint) {
+  const rel = document.getElementById("post-reading-section");
+  if (!rel) return;
+
+
+  const others = (sortedSaints || [])
+    .map(([name]) => name)
+    .filter(name => name && name !== topSaint)
+    .slice(0, 3);
+
+  rel.innerHTML = `<div class="related-title">Other Jesuit Saints who also match your desires</div>`;
+
+  if (!others.length) {
+    rel.innerHTML += '<div class="related-hint">No other saints available yet.</div>';
+    return;
+  }
+
+  const grid = document.createElement("div");
+  grid.className = "related-grid";
+
+  others.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "related-card";
+
+    const img = document.createElement("img");
+    img.src = imageFilenameFromName(name, "");
+    img.alt = name;
+
+    const label = document.createElement("div");
+    label.className = "name";
+    label.textContent = withSaintPrefix(name);
+
+
+    const a = document.createElement("a");
+    a.href = "#";
+    a.appendChild(img);
+    a.appendChild(label);
+
+a.addEventListener("click", (e) => {
+  e.preventDefault();
+  renderSaintProfile(name, false);
+
+  // re-render the "Other Jesuit Saints" grid for the newly selected saint
+  if (lastSortedSaints) {
+    showOtherJesuitSaints(lastSortedSaints, name);
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
+    card.appendChild(a);
+    grid.appendChild(card);
+  });
+
+  rel.appendChild(grid);
+}
+
+
+
+function showResult() {
+  document.body.classList.add("progress-hidden");
+
+  showLogo(true);
+  const quizContainer = document.querySelector(".quiz-container");
+  const resultContainer = document.getElementById("result-container");
+  if (quizContainer) quizContainer.classList.add("hidden");
+  if (resultContainer) resultContainer.classList.remove("hidden");
+
+
+  const saintScores = {};
+  for (const [saint, tags] of Object.entries(saintProfiles)) {
+    saintScores[saint] = (tags || []).reduce((sum, tag) => sum + (tagScores[tag] || 0), 0);
+  }
+
+const sortedSaints = Object.entries(saintScores).sort((a, b) => b[1] - a[1]);
+lastSortedSaints = sortedSaints; // <-- save it
+const topSaint = sortedSaints[0]?.[0] || null;
+
+
+  if (topSaint) {
+    renderSaintProfile(topSaint, true);
+
+    showOtherJesuitSaints(sortedSaints, topSaint);
+  }
+
+
+
 
   const progress = document.getElementById("progress-fill");
   if (progress) progress.style.width = "100%";
@@ -781,10 +1045,11 @@ function showResult() {
 
   }
 
-// Related Saints (by tags)
+
 function showRelatedByTag(tag, excludeSaint) {
-  const rel = document.getElementById("related-saints");
+  const rel = document.getElementById("post-reading-section");
   if (!rel) return;
+
 
   const matches = Object.keys(saintProfiles).filter(
     s => s !== excludeSaint && (saintProfiles[s] || []).includes(tag)
@@ -810,27 +1075,40 @@ function showRelatedByTag(tag, excludeSaint) {
 
     const label = document.createElement("div");
     label.className = "name";
-    label.textContent = name;
+    label.textContent = withSaintPrefix(name);
+
 
     const a = document.createElement("a");
-    const href = getSaintUrl(name) || "#";
-    a.href = href;
-    if (href && href !== "#") { a.target = "_blank"; a.rel = "noopener"; }
+    a.href = "#";
     a.appendChild(img);
     a.appendChild(label);
 
+a.addEventListener("click", (e) => {
+  e.preventDefault();
+  renderSaintProfile(name, false);
+
+  // re-render the "Other Jesuit Saints" grid for the newly selected saint
+  if (lastSortedSaints) {
+    showOtherJesuitSaints(lastSortedSaints, name);
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
     card.appendChild(a);
+
     grid.appendChild(card);
   });
 
   rel.appendChild(grid);
 }
 
-// initialization 
-updateProgressBar();
-//showQuestion();
 
-// Start screen wiring
+updateProgressBar();
+
+
+
 (function attachStart() {
   const startScreen = document.getElementById("start-screen");
   const start5 = document.getElementById("start-5");
@@ -840,6 +1118,10 @@ updateProgressBar();
   if (!startScreen || !start5 || !start10 || !quizContainer) return;
 
   function startQuiz(mode) {
+    showLogo(true);
+    document.body.classList.remove("progress-hidden");
+
+
   selectedQuizMode = mode;
 
   startScreen.classList.add("hidden");
@@ -847,7 +1129,13 @@ updateProgressBar();
 
   currentQuestionIndex = 0;
   tagScores = {};
+
+
+  displayOrders = [];
+  userOrders = [];
+
   shuffledQuestions = buildQuizQuestionsByMode(mode);
+
 
   updateProgressBar();
   showQuestion();
@@ -868,23 +1156,27 @@ updateProgressBar();
     const quizContainer = document.querySelector(".quiz-container");
     const resultContainer = document.getElementById("result-container");
 
-    // Reset state
+
     currentQuestionIndex = 0;
     tagScores = {};
+
+
+    displayOrders = [];
+    userOrders = [];
+
     shuffledQuestions = buildQuizQuestionsByMode(selectedQuizMode);
+
 
 
     updateProgressBar();
 
-    // Show start screen again
+    showLogo(false);
+
     if (resultContainer) resultContainer.classList.add("hidden");
     if (quizContainer) quizContainer.classList.add("hidden");
     if (startScreen) startScreen.classList.remove("hidden");
 
-    // If you'd rather retake immediately (skip start screen), replace the 3 lines above with:
-    // if (resultContainer) resultContainer.classList.add("hidden");
-    // if (quizContainer) quizContainer.classList.remove("hidden");
-    // showQuestion();
+
   };
 })();
 
