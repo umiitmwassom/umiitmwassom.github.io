@@ -345,43 +345,36 @@ p {
   margin-bottom: 14px;
 }
 
-.further-reading-wrap {
-  margin-top: 18px;
-  text-align: center;
+/* Further readings (replaces the button) */
+.further-readings{
+  clear: both;
+  margin: 14px 0 0;
+  text-align: left;
 }
 
 
-.further-reading-btn {
-  display: inline-block;
-  background: #9b0d24;
-  color: #ffff !important;
-  text-decoration: none;
-
-  padding: 12px 28px;
-  border-radius: 14px;
-
-  font-family: inherit;     
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-
-  transition: background 0.25s ease, transform 0.15s ease;
+.further-title{
+  font-size: 1.25rem;
+  margin: 0 0 10px;
+  /* Font is already Philosopher via your global h4 rule */
 }
 
-.further-reading-btn:hover {
-  background: #7f0b1d;
+.further-list{
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.6;
 }
 
-.further-reading-btn:active {
-  transform: scale(0.97);
+.further-list li{
+  margin: 6px 0;
 }
 
-
-
-
-.further-reading-btn:hover {
-  background: #7f0b1d;
+.further-list a{
+  color: #7a1f1f;
+  text-decoration: underline;
+  word-break: break-word;
 }
+
 
 /* =========================
    POST–READING SECTION
@@ -699,7 +692,7 @@ p {
   top: 0;
   right: 0;
   height: 100%;
-  width: 50%;
+  width: 75%;
   overflow: hidden;
   z-index: 1;
   opacity: 0.6;
@@ -832,6 +825,9 @@ p {
     max-width: 92vw;
     font-size: 1.02rem;
   }
+  .further-readings {
+  margin-top: 18px;
+}
 
 .start-logo {
   max-width: 155px; 
@@ -839,9 +835,7 @@ p {
 }
 
 
-  .further-reading-wrap {
-  margin-top: 14px;
-}
+
 
 
 

@@ -407,83 +407,111 @@ const saintProfiles = {
 };
 const saintTexts = {
   "Ignatius of Loyola": {
-    "quote":  "Act as if everything depended on you; trust as if everything depended on God",
-    "prayer": "Heavenly Father, you have given us St. Ignatius as our spiritual father. Through his intercession, grant us his audacity and wisdom so that our lives give you greater glory. We ask this through Christ, our Lord. Amen."
+    "quote": "Act as if everything depended on you; trust as if everything depended on God",
+    "prayer": "Heavenly Father,\nYou have given us St. Ignatius as our spiritual father.\nThrough his intercession,\ngrant us his audacity and wisdom,\nso that our lives give you greater glory.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "A Pilgrim's Testament: The Memoirs of Saint Ignatius of Loyola by Barton Geger, SJ"
   },
-   "Alberto Hurtado": {
-    "quote":  "Christ stumbles through our streets,",
-    "prayer": "Heavenly Father, St. Alberto Hurtado shared your Good News through intellectual and practical means. Through his intercession, grant us an evangelical zeal that helps us to mirror his balanced approach. We ask this through Christ, our Lord. Amen."
+
+  "Alberto Hurtado": {
+    "quote": "Christ stumbles through our streets,",
+    "prayer": "Heavenly Father,\nSt. Alberto Hurtado shared your Good News\nthrough intellectual and practical means.\nThrough his intercession,\ngrant us an evangelical zeal\nthat helps us to mirror his balanced approach.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Francis Xavier": {
-    "prayer": "Heavenly Father, St. Francis Xavier made your love known with great missionary zeal. Through his intercession, grant us the same inner fire so that we may bring your Good News to the four corners of the world. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Francis Xavier made your love known\nwith great missionary zeal.\nThrough his intercession,\ngrant us the same inner fire,\nso that we may bring your Good News\nto the four corners of the world.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "Set All Afire by Louis de Wohl"
   },
+
   "Peter Faber": {
-    "prayer": "Heavenly Father, you have blessed St. Peter Faber as a master of giving the Spiritual Exercises. Through his intercession, grant us the spiritual wisdom to know the ways in which you tuck our heartstrings. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have blessed St. Peter Faber\nas a master of giving the Spiritual Exercises.\nThrough his intercession,\ngrant us the spiritual wisdom\nto know the ways in which you tuck our heartstrings.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "The Quiet Companion: The Life of Peter Faber, SJ by Mary Purcell"
   },
+
   "Paul Miki": {
     "quote": "Like my Master, I shall die upon the cross. Like him, a lance will pierce my heart so that my blood and my love can flow out upon the land and sanctify it to his name.",
-    "prayer": "Heavenly Father, St. Paul Miki shed his blood out of love for you and for his brethren in Japan. Through his intercession, grant us the same steadfast love, so that our lives give credible witness to you. We ask this through Christ, our Lord. Amen. "
+    "prayer": "Heavenly Father,\nSt. Paul Miki shed his blood\nout of love for you and for his brethren in Japan.\nThrough his intercession,\ngrant us the same steadfast love,\nso that our lives give credible witness to you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Claude La Colombiere": {
     "quote": "I am resolved in the future to live free from every care and to turn all my anxieties over to you.",
-    "prayer": "Heavenly Father, St. Claude La Colombiere sought to make your love known through propagating the devotion of the Sacred Heart. Through his intercession, mould our hearts that they resemble that of your Son, so that our lives become channels of your love. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Claude La Colombiere sought to make your love known\nthrough propagating the devotion of the Sacred Heart.\nThrough his intercession,\nmould our hearts that they resemble that of your Son,\nso that our lives become channels of your love.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Peter Canisius": {
     "quote": "Charity is that with which no man is lost, and without which no man is saved.",
-    "prayer": "Heavenly Father, you have given St. Peter Canisius a burning zeal to catechize the people of Germany. Through his intercession, grant us the zeal to teach the faith, so that others may better know, love and follow you. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have given St. Peter Canisius\na burning zeal to catechize the people of Germany.\nThrough his intercession,\ngrant us the zeal to teach the faith,\nso that others may better know, love, and follow you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Jose Maria Rubio": {
     "quote": "Do what God wants, and want what God does",
-    "prayer":"Heavenly Father, you have made St. José Mario Rubio a tireless apostle in the city of Madrid. Through his intercession, grant us the strength we need so that we may take that extra step to serve our neighbors. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have made St. José Mario Rubio\na tireless apostle in the city of Madrid.\nThrough his intercession,\ngrant us the strength we need,\nso that we may take that extra step to serve our neighbors.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Jose de Anchieta": {
     "quote": "May death at least find me abandoned in one of these mountains and there to die for my brothers.",
-    "prayer": "Heavenly Father, St. José de Anchieta spared no effort in making your love known in Brazil. Through his intercession, grant us the audacity to be creative in bringing our neighbors to you. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. José de Anchieta spared no effort\nin making your love known in Brazil.\nThrough his intercession,\ngrant us the audacity\nto be creative in bringing our neighbors to you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "John Francis Regis": {
     "quote": "Come, I carry you all in my heart.",
-    "prayer": "Heavenly Father, Saint John Francis Regis tirelessly served your people in hundreds of French villages; through his intercession, give us the same heart to serve in the neglected villages of our day. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSaint John Francis Regis tirelessly served your people\nin hundreds of French villages.\nThrough his intercession,\ngive us the same heart to serve\nin the neglected villages of our day.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Aloysius Gonzaga": {
     "quote": "Jesus, Jesus, Jesus, be to me Jesus.",
-    "prayer": "Heavenly Father, St. Aloysius Gonzaga gave his life while serving the infirmed during a plague. Through his intercession, help us to devote our lives to those who are most in need of your mercy. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Aloysius Gonzaga gave his life\nwhile serving the infirmed during a plague.\nThrough his intercession,\nhelp us to devote our lives\nto those who are most in need of your mercy.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "Saint Aloysius Gonzaga, S.J.: With an Undivided Heart by Silas Henderson"
   },
+
   "Peter Claver": {
     "quote": "Slave of the black slaves for all time.",
-    "prayer": "Heavenly Father, St. Peter Claver made himself a slave of slaves to serve the marginalized in his day; through his intercession, grant us the desire to love and serve in the same manner. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Peter Claver made himself a slave of slaves\nto serve the marginalized in his day.\nThrough his intercession,\ngrant us the desire\nto love and serve in the same manner.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Robert Bellarmine": {
     "quote": "Charity is that with which no man is lost, and without which no man is saved",
-    "prayer": "Heavenly Father, you have given St. Robert Bellarmine a great intellect to understand and communicate your truth. Through his intercession, help us to better know you so that we may better lead others to you. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have given St. Robert Bellarmine\na great intellect to understand and communicate your truth.\nThrough his intercession,\nhelp us to better know you,\nso that we may better lead others to you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Francis Borgia": {
     "quote": "Never again will I serve a lord who can die.",
-    "prayer": "Heavenly Father, St. Francis Borgia left behind honor and riches to follow and serve your Son; through his intercession, help us to strive for the same interior freedom so to better let go of things and cling onto you. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Francis Borgia left behind honor and riches\nto follow and serve your Son.\nThrough his intercession,\nhelp us to strive for the same interior freedom,\nso as to better let go of things and cling onto you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Isaac Jogues": {
-    "prayer": "Heavenly Father, St. Isaac Jogues chose to return to his mission with full knowledge of the pending suffering and death. Through his intercession, grant us the same docile strength so that we may better embrace our Cross. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Isaac Jogues chose to return to his mission\nwith full knowledge of the pending suffering and death.\nThrough his intercession,\ngrant us the same docile strength,\nso that we may better embrace our Cross.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "Isaac Jogues: Saint Among the Mohawks by Francis Xavier Talbot, SJ"
   },
+
   "Jean de Brebeuf": {
-    "prayer": "Heavenly Father, St. Jean de Brébeuf considers Jesus and his Cross as the true greatness of our lives; through his intercession, grant us a heart to seek Christ and his Cross more, so that we be able to find sweetness in bitterness, roses in the thorns, and all in nothing. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Jean de Brébeuf considered Jesus and his Cross\nas the true greatness of our lives.\nThrough his intercession,\ngrant us a heart to seek Christ and his Cross more,\nso that we may be able to find sweetness in bitterness,\nroses in the thorns,\nand all in nothing.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "Brébeuf: Jesuit Martyr Of Canada 2nd Edition by John O’Brien, SJ"
   },
+
   "Noel Chabanel": {
     "quote": "I vow to remain among the Hurons even unto death, submitting myself to the will of God and my superiors.",
-    "prayer": "Heavenly Father, St. Noel Chabanel remained steadfast in his mission even amidst seeming failures. Through his intercession, help us to remain faithful out of love for you and for those whom you have entrusted to us. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Noel Chabanel remained steadfast in his mission\neven amidst seeming failures.\nThrough his intercession,\nhelp us to remain faithful\nout of love for you\nand for those whom you have entrusted to us.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Alphonsus Rodriguez": {
-    "prayer": "Heavenly Father, St. Alphonsus Rodriguez humbly served you in small and menial tasks; through his intercession, grant us the grace to search and find you in the small things of our lives. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Alphonsus Rodriguez humbly served you\nin small and menial tasks.\nThrough his intercession,\ngrant us the grace to search and find you\nin the small things of our lives.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Stanislaus Kostka": {
-    "prayer": "Heavenly Father, you have given St. Stanislaus Kostka great determination in following you. Through his intercession, help us to grow in our resolve so that we may persevere in our desire to love and follow you. We asked this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have given St. Stanislaus Kostka\ngreat determination in following you.\nThrough his intercession,\nhelp us to grow in our resolve,\nso that we may persevere\nin our desire to love and follow you.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Joseph Pignatelli": {
-    "prayer": "Heavenly Father, St. Joseph Pignatelli faithfully loved and served his brother Jesuits in times of great turmoil; through his intercession, grant us the same persevering love for our brothers and sisters. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nSt. Joseph Pignatelli faithfully loved and served\nhis brother Jesuits in times of great turmoil.\nThrough his intercession,\ngrant us the same persevering love\nfor our brothers and sisters.\nWe ask this through Christ, our Lord. Amen."
   },
+
   "Edmund Campion": {
     "quote": "The expense is reckoned, the enterprise is begun; it is of God, it cannot be withstood.",
-    "prayer": "Heavenly Father, you have given St. Edmund Campion an eloquence to preach the Kingdom of God amidst great trials and tribulations. Through his intercession, give us the same courage so that we may fearlessly give witness to you. We ask this through Christ, our Lord. Amen."
+    "prayer": "Heavenly Father,\nYou have given St. Edmund Campion\nan eloquence to preach the Kingdom of God\namidst great trials and tribulations.\nThrough his intercession,\ngive us the same courage,\nso that we may fearlessly give witness to you.\nWe ask this through Christ, our Lord. Amen.",
+    "book": "Edmund Campion: A Life by Evelyn Waugh"
   }
 };
+
 
 // ============================
 // BIOS
@@ -887,11 +915,11 @@ function renderSaintProfile(saintName, isMatch = false) {
   if (nameEl) nameEl.textContent = saintName ? withSaintPrefix(saintName) : "Results";
 
   if (imgEl && saintName) {
-    imgEl.src = imageFilenameFromName(saintName, "");
+    imgEl.src = imageFilenameFromName(saintName);
     imgEl.alt = saintName;
     imgEl.onerror = function () {
       this.onerror = null;
-      this.src = imageFilenameFromName(saintName, "").replace(".jpg", ".png");
+      this.src = imageFilenameFromName(saintName).replace(".jpg", ".png");
     };
   }
 
@@ -907,22 +935,29 @@ const prayer = info.prayer
   ? `
     <div class="saint-prayer">
       <h4 class="prayer-title">Let us pray:</h4>
-      <p>${info.prayer}</p>
+      <p class="prayer-text">${String(info.prayer).replace(/\n/g, "<br>")}</p>
     </div>
-
-    ${info.url ? `
-      <div class="further-reading-wrap">
-        <a class="further-reading-btn" href="${info.url}" target="_blank" rel="noopener">
-          Further readings
-        </a>
-      </div>
-    ` : ""}
   `
   : "";
 
+const furtherReadings = info.url
+  ? `
+    <div class="further-readings">
+      <h4 class="further-title">Further readings:</h4>
+      <ul class="further-list">
+        ${info.book ? `<li>${info.book}</li>` : ""}
+        <li>
+          <a href="${info.url}" target="_blank" rel="noopener">
+            ${info.url}
+          </a>
+        </li>
+      </ul>
+    </div>
+  `
+  : "";
 
+html = [bio, quote, prayer, furtherReadings].filter(Boolean).join("");
 
-html = [bio, quote, prayer].filter(Boolean).join("");
 
 
     }
@@ -973,7 +1008,7 @@ function showOtherJesuitSaints(sortedSaints, topSaint) {
     card.className = "related-card";
 
     const img = document.createElement("img");
-    img.src = imageFilenameFromName(name, "");
+    img.src = imageFilenameFromName(name);
     img.alt = name;
 
     const label = document.createElement("div");
@@ -1070,7 +1105,7 @@ function showRelatedByTag(tag, excludeSaint) {
     card.className = "related-card";
 
     const img = document.createElement("img");
-    img.src = imageFilenameFromName(name, "");
+    img.src = imageFilenameFromName(name);
     img.alt = name;
 
     const label = document.createElement("div");
